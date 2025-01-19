@@ -14,7 +14,7 @@ create table
 copy
   staging_addresses(address, city, country)
 from
-  'd:/Course Work LR 2024/point1/csv/addresses.csv' delimiter ',' csv header;
+  'd:/Course-Work/point1/csv/addresses.csv' delimiter ',' csv header;
 
 truncate
   table addresses restart identity cascade;
@@ -66,7 +66,7 @@ copy
     max_weight_capacity
   )
 from
-  'd:/Course Work LR 2024/point1/csv/shippers.csv' delimiter ',' csv header;
+  'd:/Course-Work/point1/csv/shippers.csv' delimiter ',' csv header;
 
 truncate
   table shippers restart identity cascade;
@@ -117,7 +117,7 @@ create table
 copy
   staging_categories(category_name, category_description)
 from
-  'd:/Course Work LR 2024/point1/csv/categories.csv' delimiter ',' csv header;
+  'd:/Course-Work/point1/csv/categories.csv' delimiter ',' csv header;
 
 truncate
   table categories restart identity cascade;
@@ -152,7 +152,7 @@ copy
     subcategory_description
   )
 from
-  'd:/Course Work LR 2024/point1/csv/subcategories.csv' delimiter ',' csv header;
+  'd:/Course-Work/point1/csv/subcategories.csv' delimiter ',' csv header;
 
 truncate
   table subcategories restart identity cascade;
@@ -207,7 +207,7 @@ copy
     logo_url
   )
 from
-  'd:/Course Work LR 2024/point1/csv/brands.csv' delimiter ',' csv header;
+  'd:/Course-Work/point1/csv/brands.csv' delimiter ',' csv header;
 
 truncate
   table brands restart identity cascade;
@@ -259,7 +259,7 @@ copy
     contact_info
   )
 from
-  'd:/Course Work LR 2024/point1/csv/manufacturers.csv' delimiter ',' csv header;
+  'd:/Course-Work/point1/csv/manufacturers.csv' delimiter ',' csv header;
 
 truncate
   table manufacturers restart identity cascade;
@@ -311,7 +311,7 @@ create table
 copy
   staging_product_colors(color_name, description)
 from
-  'd:/Course Work LR 2024/point1/csv/product_colors.csv' delimiter ',' csv header;
+  'd:/Course-Work/point1/csv/product_colors.csv' delimiter ',' csv header;
 
 truncate
   table product_colors restart identity cascade;
@@ -338,7 +338,7 @@ create table
 copy
   staging_product_weights(weight_value)
 from
-  'd:/Course Work LR 2024/point1/csv/product_weights.csv' delimiter ',' csv header;
+  'd:/Course-Work/point1/csv/product_weights.csv' delimiter ',' csv header;
 
 insert into
   product_weights (weight_value)
@@ -361,7 +361,7 @@ create table
 copy
   staging_product_dimensions(dimension_value, description)
 from
-  'd:/Course Work LR 2024/point1/csv/product_dimensions.csv' delimiter ',' csv header;
+  'd:/Course-Work/point1/csv/product_dimensions.csv' delimiter ',' csv header;
 
 insert into
   product_dimensions (dimension_value, description)
@@ -421,7 +421,7 @@ copy
     manufacturer_name
   )
 from
-  'd:/Course Work LR 2024/point1/csv/products.csv' delimiter ',' csv header;
+  'd:/Course-Work/point1/csv/products.csv' delimiter ',' csv header;
 
 truncate
   table products restart identity cascade;
@@ -552,7 +552,7 @@ copy
     profile_picture_url
   )
 from
-  'd:/Course Work LR 2024/point1/csv/shop_users.csv' delimiter ',' csv header;
+  'd:/Course-Work/point1/csv/shop_users.csv' delimiter ',' csv header;
 
 truncate
   table shop_users restart identity cascade;
@@ -611,7 +611,7 @@ create table
 copy
   staging_baskets(user_email, creation_date)
 from
-  'd:/Course Work LR 2024/point1/csv/baskets.csv' delimiter ',' csv header;
+  'd:/Course-Work/point1/csv/baskets.csv' delimiter ',' csv header;
 
 truncate
   table baskets restart identity cascade;
@@ -655,7 +655,7 @@ copy
     price_when_added
   )
 from
-  'd:/Course Work LR 2024/point1/csv/basket_details.csv' delimiter ',' csv header;
+  'd:/Course-Work/point1/csv/basket_details.csv' delimiter ',' csv header;
 
 truncate
   table basket_details restart identity cascade;
@@ -716,7 +716,7 @@ copy
     shipper_name
   )
 from
-  'd:/Course Work LR 2024/point1/csv/delivery_details.csv' delimiter ',' csv header;
+  'd:/Course-Work/point1/csv/delivery_details.csv' delimiter ',' csv header;
 
 truncate
   table delivery_details restart identity cascade;
@@ -778,7 +778,7 @@ copy
     employee_role
   )
 from
-  'd:/Course Work LR 2024/point1/csv/employees.csv' delimiter ',' csv header;
+  'd:/Course-Work/point1/csv/employees.csv' delimiter ',' csv header;
 
 insert into
   employees (
@@ -857,7 +857,7 @@ copy
     shipper_name
   )
 from
-  'd:/Course Work LR 2024/point1/csv/orders.csv' delimiter ',' csv header;
+  'd:/Course-Work/point1/csv/orders.csv' delimiter ',' csv header;
 
 truncate
   table orders restart identity cascade;
@@ -939,7 +939,7 @@ create table
 copy
   staging_order_details(order_number, product_code, quantity, price_each)
 from
-  'd:/Course Work LR 2024/point1/csv/order_details.csv' delimiter ',' csv header;
+  'd:/Course-Work/point1/csv/order_details.csv' delimiter ',' csv header;
 
 truncate
   table order_details restart identity cascade;
@@ -985,7 +985,7 @@ create table
 copy
   staging_favorites(email, product_code, liked_date, stars)
 from
-  'd:/Course Work LR 2024/point1/csv/favorites.csv' delimiter ',' csv header;
+  'd:/Course-Work/point1/csv/favorites.csv' delimiter ',' csv header;
 
 truncate
   table favorites restart identity cascade;
