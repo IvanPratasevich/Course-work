@@ -1,0 +1,51 @@
+shipper_name,contact_info,phone,status,website_url,company_type,tax_id,insurance_number,payment_terms,rating,max_weight_capacity
+BioExpress Delivery,"Penelope Wright, service@bioexpress.com",+41 (694) 849-4267,True,https://www.bioexpress.com,Express Delivery,TAX8672,INS81768,Prepaid,4,1853
+DHL Express,"Elizabeth Davis, support@dhl.com",+1 (264) 735-2184,True,https://www.dhl.com,Express Delivery,TAX6290,INS96009,Cash on Delivery,5,254
+PharmaShip Solutions,"Avery Harris, contact@pharmaship.com",+41 (165) 797-1130,True,https://www.pharmaship.com,Courier,TAX3307,INS58140,Net 30,4,2463
+HealthExpress Couriers,"Lily Bailey, support@healthexpress.com",+34 (801) 472-1777,True,https://www.healthexpress.com,Freight,TAX9246,INS23365,Net 30,4,4992
+PharmaFleet Express,"Michael Sullivan, service@pharmafleet.com",+39 (910) 849-5683,True,https://www.pharmafleet.com,Logistics,TAX9451,INS52984,Net 30,2,2354
+LifeLine Couriers,"Nora Rivera, support@lifelinecouriers.com",+39 (408) 353-7254,True,https://www.lifelinecouriers.com,Freight,TAX9934,INS71709,Net 60,3,2366
+FedEx,"Morgan Sanchez, help@fedex.com",+49 (916) 294-5275,True,https://www.fedex.com,Postal Service,TAX9312,INS15905,Prepaid,1,4446
+MediCare Logistics,"Violet Duncan, support@medicarelogistics.com",+41 (448) 980-8436,True,https://www.medicarelogistics.com,Postal Service,TAX1564,INS64495,Credit,2,2890
+BioQuick Delivery,"Caleb Hamilton, info@bioquick.com",+1 (784) 592-7663,True,https://www.bioquick.com,Express Delivery,TAX1477,INS36678,Net 30,3,2950
+BioCare Express,"Penelope Castro, service@biocareexpress.com",+33 (961) 394-4963,True,https://www.biocareexpress.com,Express Delivery,TAX7590,INS84984,Net 60,2,3253
+PharmaExpress Delivery,"Robert Davis, contact@pharmaexpress.com",+44 (425) 316-4611,True,https://www.pharmaexpress.com,Courier,TAX3070,INS52856,Net 30,2,1511
+MediQuick Logistics,"Brandon Delgado, info@mediquicklogistics.com",+34 (631) 113-1607,True,https://www.mediquicklogistics.com,Freight,TAX3121,INS64689,Cash on Delivery,4,3184
+MediCare Express,"Sophia Morris, service@medicareexpress.com",+1 (136) 323-8446,True,https://www.medicareexpress.com,Postal Service,TAX5664,INS95568,Net 60,3,413
+HealthLink Couriers,"Matthew Moore, info@healthlinkcouriers.com",+41 (867) 606-8794,True,https://www.healthlinkcouriers.com,Logistics,TAX8118,INS34688,Net 30,2,3004
+BioFleet Express,"Wyatt Romero, contact@biofleet.com",+39 (989) 719-9880,True,https://www.biofleet.com,Postal Service,TAX8164,INS29351,Net 60,3,2299
+BioTrans Logistics,"Genesis Hood, info@biotranslogistics.com",+49 (765) 472-8723,True,https://www.biotranslogistics.com,Postal Service,TAX1026,INS72676,Net 30,5,1613
+HealthFleet Transport,"Zoey Armstrong, contact@healthfleet.com",+34 (777) 535-3813,True,https://www.healthfleet.com,Logistics,TAX2211,INS74805,Credit,3,547
+HealthFleet Couriers,"Nevaeh Morgan, contact@healthfleetcouriers.com",+34 (909) 769-1216,True,https://www.healthfleetcouriers.com,Courier,TAX8858,INS47984,Prepaid,5,770
+BioWay Couriers,"Evan Doe, support@biowaycouriers.com",+39 (189) 573-8211,True,https://www.biowaycouriers.com,Express Delivery,TAX3946,INS89654,Net 60,2,4455
+TNT,"Grace James, contact@tnt.com",+41 (465) 521-8027,True,https://www.tnt.com,Express Delivery,TAX3941,INS20401,Credit,2,2338
+PharmaCare Transport,"Elliana Owens, info@pharmacaretransport.com",+44 (248) 643-4115,True,https://www.pharmacaretransport.com,Logistics,TAX4301,INS44919,Cash on Delivery,4,612
+VitalShip Logistics,"Zoey King, contact@vitalship.com",+41 (693) 109-8836,True,https://www.vitalship.com,Logistics,TAX9660,INS44821,Prepaid,5,4041
+DPD,"Avery Diaz, info@dpd.com",+39 (947) 242-4204,True,https://www.dpd.com,Postal Service,TAX5539,INS73617,Net 30,2,4532
+MediQuick Delivery,"Scarlett Harrison, info@mediquick.com",+44 (746) 502-6612,True,https://www.mediquick.com,Logistics,TAX3610,INS29154,Cash on Delivery,1,2035
+HealthCare Transport,"Gabriel Kelly, info@healthcaretransport.com",+44 (268) 936-7397,True,https://www.healthcaretransport.com,Freight,TAX8491,INS10315,Net 30,5,4205
+HealthWay Express,"Isaiah Ramirez, service@healthwayexpress.com",+33 (723) 313-1846,True,https://www.healthwayexpress.com,Logistics,TAX8758,INS22751,Prepaid,5,4924
+VitalCare Transport,"Carl Evans, service@vitalcaretransport.com",+34 (262) 632-5357,True,https://www.vitalcaretransport.com,Postal Service,TAX8019,INS16753,Credit,2,1573
+CareShip International,"Sadie Andrews, support@careshipintl.com",+39 (766) 372-8807,True,https://www.careshipintl.com,Courier,TAX1060,INS49594,Prepaid,4,1820
+MediTrans Global,"Lucas Dixon, contact@meditransglobal.com",+49 (113) 201-3797,True,https://www.meditransglobal.com,Postal Service,TAX7369,INS81372,Prepaid,4,4481
+MediFleet Express,"John Woods, info@medifleet.com",+39 (363) 829-6748,True,https://www.medifleet.com,Courier,TAX8056,INS65364,Net 60,5,2349
+UPS,"Bella Armstrong, customerservice@ups.com",+81 (634) 726-5667,True,https://www.ups.com,Postal Service,TAX4602,INS44536,Cash on Delivery,2,3470
+PharmaLink Transport,"Brandon Vincent, support@pharmalink.com",+81 (266) 521-9281,True,https://www.pharmalink.com,Express Delivery,TAX6051,INS97736,Credit,2,2100
+PharmaQuick Delivery,"Isaiah Martin, contact@pharmaquick.com",+49 (906) 342-5523,True,https://www.pharmaquick.com,Postal Service,TAX7860,INS24533,Net 30,5,577
+HealthWay Couriers,"Wyatt Knight, support@healthwaycouriers.com",+39 (458) 924-8960,True,https://www.healthwaycouriers.com,Express Delivery,TAX5795,INS96030,Net 60,2,1010
+LifeLine Logistics,"Jayden Baker, contact@lifelinelogistics.com",+41 (834) 822-8116,True,https://www.lifelinelogistics.com,Freight,TAX9095,INS22073,Net 30,5,4211
+MediFleet Logistics,"Penelope Foster, contact@medifleetlogistics.com",+44 (492) 147-9212,True,https://www.medifleetlogistics.com,Express Delivery,TAX1485,INS79476,Prepaid,1,619
+PharmaWay Logistics,"Grace Cook, info@pharmaway.com",+81 (881) 527-2453,True,https://www.pharmaway.com,Postal Service,TAX8381,INS75906,Credit,3,407
+BioCare Logistics,"Jayden Sandoval, service@biocarelogistics.com",+39 (808) 377-5794,True,https://www.biocarelogistics.com,Logistics,TAX8818,INS60222,Net 30,3,766
+MedTrans Logistics,"Nathan Rivera, support@medtranslogistics.com",+49 (907) 892-5605,True,https://www.medtranslogistics.com,Logistics,TAX1426,INS89133,Cash on Delivery,4,4860
+MediLink Express,"Easton Bowers, info@medilinkexpress.com",+81 (681) 150-9573,True,https://www.medilinkexpress.com,Logistics,TAX5134,INS28746,Net 30,4,2715
+Vitality Transport,"Aaron Miles, info@vitalitytransport.com",+44 (381) 504-7819,True,https://www.vitalitytransport.com,Postal Service,TAX3807,INS19769,Credit,4,4071
+VitalLink Couriers,"Isaiah Young, support@vitallinkcouriers.com",+1 (859) 229-7472,True,https://www.vitallinkcouriers.com,Courier,TAX6942,INS23412,Prepaid,3,126
+VitalExpress Couriers,"David Maddox, contact@vitalexpress.com",+49 (127) 158-8914,True,https://www.vitalexpress.com,Postal Service,TAX2523,INS33735,Cash on Delivery,5,2841
+VitalWay Transport,"Madison Henry, info@vitalwaytransport.com",+81 (770) 529-8606,True,https://www.vitalwaytransport.com,Freight,TAX5421,INS75857,Prepaid,2,476
+BioExpress Logistics,"Leah Schmidt, contact@bioexpresslogistics.com",+41 (725) 431-4777,True,https://www.bioexpresslogistics.com,Postal Service,TAX2750,INS51887,Cash on Delivery,2,2301
+GLS,"Ella Foster, info@gls-group.com",+81 (363) 746-6085,True,https://www.gls-group.com,Logistics,TAX2419,INS44637,Cash on Delivery,4,2329
+MediTrans Express,"Aaliyah Myers, info@meditransexpress.com",+1 (726) 619-7794,True,https://www.meditransexpress.com,Courier,TAX7732,INS85091,Cash on Delivery,4,1166
+MediCare Transport,"William Vaughn, info@medicaretransport.com",+34 (198) 950-1089,True,https://www.medicaretransport.com,Logistics,TAX7557,INS66376,Net 60,2,3279
+HealthLink Logistics,"Michael Wilson, contact@healthlinklogistics.com",+33 (191) 213-3333,True,https://www.healthlinklogistics.com,Express Delivery,TAX5747,INS59317,Net 30,2,4312
+VitalFleet Transport,"Emilia Meyer, info@vitalfleettransport.com",+49 (673) 162-7090,True,https://www.vitalfleettransport.com,Postal Service,TAX2030,INS20355,Net 30,3,2968

@@ -1,0 +1,11 @@
+brand_name,brand_description,status,website_url,country_of_origin,established_year,logo_url
+Mindray,Mindray is a leading provider of medical equipment.,True,https://mindray.com,Italy,1952,https://cdn.mindray.com/logo.png
+Roche,Roche is a leading provider of medical equipment.,False,https://roche.com,Spain,2019,https://cdn.roche.com/logo.png
+Philips,Philips is a leading provider of medical equipment.,True,https://philips.com,Germany,1981,https://cdn.philips.com/logo.png
+Zimmer Biomet,Zimmer Biomet is a leading provider of medical equipment.,True,https://zimmerbiomet.com,Canada,1973,https://cdn.zimmerbiomet.com/logo.png
+B.Braun,B.Braun is a leading provider of medical equipment.,False,https://b.braun.com,Netherlands,1974,https://cdn.b.braun.com/logo.png
+Hitachi Healthcare,Hitachi Healthcare is a leading provider of medical equipment.,False,https://hitachihealthcare.com,USA,1959,https://cdn.hitachihealthcare.com/logo.png
+Siemens,Siemens is a leading provider of medical equipment.,True,https://siemens.com,USA,1998,https://cdn.siemens.com/logo.png
+ACME,ACME is a leading provider of medical equipment.,True,https://acme.com,USA,1997,https://cdn.acme.com/logo.png
+Abbott,Abbott is a leading provider of medical equipment.,True,https://abbott.com,USA,1982,https://cdn.abbott.com/logo.png
+3M,3M is a leading provider of medical equipment.,True,https://3m.com,Canada,1996,https://cdn.3m.com/logo.png

@@ -1,0 +1,51 @@
+product_code,product_name,product_description,price,currency,availability_status,color_name,weight_value,dimension_value,power_supply,subcategory_name,brand_name,manufacturer_name
+PROD-69385,ECG Monitor,ECG Monitor is a high-quality product.,30928.73,USD,backorder,Black,71.72,168x128x165cm,Battery,Obstetric Trusses,Zimmer Biomet,Terumo
+PROD-40140,Radiation Therapy System,Radiation Therapy System is a high-quality product.,8856.95,EUR,discontinued,Green,89.39,156x24x93cm,Multi-Voltage,Incubators,B.Braun,Philips Medical
+PROD-10094,Respirator,Respirator is a high-quality product.,35613.88,EUR,in stock,Red,69.65,49x148x34cm,Multi-Voltage,Incubators,Roche,Philips Medical
+PROD-18683,Infusion Pump,Infusion Pump is a high-quality product.,47951.02,EUR,backorder,Black,69.96,53x63x139cm,Battery,Microbiology Culture Systems,Zimmer Biomet,Abbott Laboratories
+PROD-50821,CT Scanner,CT Scanner is a high-quality product.,41877.41,USD,backorder,White,37.4,154x92x101cm,220V,Healthcare Transport Vehicles,Siemens,Johnson & Johnson Medical
+PROD-43688,Blood Analyzer,Blood Analyzer is a high-quality product.,21482.61,USD,out of stock,Red,83.6,124x193x97cm,120-240V,Healthcare Transport Vehicles,Hitachi Healthcare,Johnson & Johnson Medical
+PROD-83817,ECG Monitor,ECG Monitor is a high-quality product.,30910.72,USD,in stock,Yellow,39.68,124x193x97cm,Battery,Endoscopy,Siemens,B.Braun Melsungen
+PROD-88484,Surgical Robot,Surgical Robot is a high-quality product.,19110.73,GBP,in stock,Red,54.41,154x92x101cm,120-240V,Obstetric Trusses,Siemens,Terumo
+PROD-32131,Surgical Laser,Surgical Laser is a high-quality product.,11651.57,GBP,out of stock,Blue,11.93,23x28x183cm,Multi-Voltage,Microbiology Culture Systems,Siemens,Terumo
+PROD-26891,Holter Monitor,Holter Monitor is a high-quality product.,8768.96,EUR,out of stock,Yellow,90.6,49x148x34cm,120-240V,Hematology Counters,Philips,Terumo
+PROD-79907,C-Arm X-Ray,C-Arm X-Ray is a high-quality product.,27385.99,EUR,discontinued,Yellow,45.94,118x109x40cm,110V,Medical Examination Tables,Abbott,Boston Scientific Corp
+PROD-98837,Surgical Laser,Surgical Laser is a high-quality product.,29082.6,EUR,backorder,Red,34.11,155x104x97cm,220V,Healthcare Transport Vehicles,Mindray,Philips Medical
+PROD-76520,Respirator,Respirator is a high-quality product.,49007.32,GBP,discontinued,Black,44.5,23x28x183cm,Battery,Healthcare Transport Vehicles,ACME,Olympus Corp
+PROD-38602,Infusion Pump,Infusion Pump is a high-quality product.,47225.87,GBP,backorder,Yellow,97.14,104x174x47cm,110V,Physical Therapy Equipment,3M,Terumo
+PROD-78350,Electrosurgical Unit,Electrosurgical Unit is a high-quality product.,38402.64,USD,backorder,Blue,89.32,63x160x101cm,110V,Hematology Counters,Mindray,Hitachi Medical
+PROD-35995,Mammography Unit,Mammography Unit is a high-quality product.,28585.07,GBP,backorder,White,61.26,109x31x175cm,Multi-Voltage,Hematology Analyzers,Roche,Hitachi Medical
+PROD-27615,Defibrillator,Defibrillator is a high-quality product.,4187.29,GBP,out of stock,Red,77.83,116x140x159cm,110V,Dermatoscopes,Abbott,Olympus Corp
+PROD-84106,Respirator,Respirator is a high-quality product.,16999.12,USD,in stock,Red,71.72,62x82x81cm,Multi-Voltage,Obstetric Trusses,Zimmer Biomet,Canon Medical Systems
+PROD-44062,Surgical Laser,Surgical Laser is a high-quality product.,13515.98,USD,discontinued,Blue,64.1,40x18x55cm,110V,Incubators,Siemens,Johnson & Johnson Medical
+PROD-77079,Ventilator,Ventilator is a high-quality product.,10177.4,GBP,in stock,Yellow,32.49,179x158x194cm,220V,CT,B.Braun,B.Braun Melsungen
+PROD-61953,Endoscope,Endoscope is a high-quality product.,15631.41,EUR,discontinued,White,2.01,14x43x107cm,220V,CT,Roche,Abbott Laboratories
+PROD-35924,Respirator,Respirator is a high-quality product.,1103.55,GBP,out of stock,Black,2.01,102x38x196cm,220V,Physical Therapy Equipment,Abbott,Terumo
+PROD-91919,Blood Analyzer,Blood Analyzer is a high-quality product.,23256.32,GBP,out of stock,Green,32.97,23x28x183cm,Multi-Voltage,Microbiology Culture Systems,B.Braun,Olympus Corp
+PROD-96528,Dialysis Machine,Dialysis Machine is a high-quality product.,12677.81,GBP,out of stock,White,95.99,156x124x142cm,220V,Microbiology Culture Systems,ACME,Abbott Laboratories
+PROD-99537,X-Ray Machine,X-Ray Machine is a high-quality product.,44364.42,USD,in stock,Blue,29.01,120x64x77cm,220V,Obstetric Trusses,Zimmer Biomet,Shimadzu Medical
+PROD-65059,Surgical Robot,Surgical Robot is a high-quality product.,49673.15,EUR,discontinued,Gray,44.5,155x104x97cm,110V,Microbiology Culture Systems,Hitachi Healthcare,Olympus Corp
+PROD-18780,Patient Monitor,Patient Monitor is a high-quality product.,23670.21,EUR,backorder,White,37.85,90x30x62cm,Multi-Voltage,Laboratory Analyzers,Hitachi Healthcare,Shimadzu Medical
+PROD-58739,Mammography Unit,Mammography Unit is a high-quality product.,12689.1,GBP,out of stock,White,84.27,116x140x159cm,110V,Hematology Counters,Mindray,Terumo
+PROD-93842,Holter Monitor,Holter Monitor is a high-quality product.,31080.55,EUR,out of stock,Black,45.94,155x104x97cm,220V,Endoscopy,Zimmer Biomet,Shimadzu Medical
+PROD-20343,X-Ray Machine,X-Ray Machine is a high-quality product.,41184.29,USD,out of stock,Gray,61.26,179x158x194cm,Multi-Voltage,Laboratory Analyzers,Hitachi Healthcare,Abbott Laboratories
+PROD-19581,Surgical Laser,Surgical Laser is a high-quality product.,35133.64,EUR,backorder,Black,77.83,154x92x101cm,Multi-Voltage,Physical Therapy Equipment,Zimmer Biomet,Terumo
+PROD-26822,MRI Scanner,MRI Scanner is a high-quality product.,4619.28,USD,discontinued,Gray,97.14,120x185x80cm,Battery,Dermatoscopes,B.Braun,Philips Medical
+PROD-57801,Surgical Robot,Surgical Robot is a high-quality product.,40608.79,EUR,out of stock,Blue,81.26,120x64x77cm,Battery,Medical Examination Tables,Zimmer Biomet,Abbott Laboratories
+PROD-49239,Endoscope,Endoscope is a high-quality product.,34226.68,USD,out of stock,Red,58.79,173x162x21cm,120-240V,Hematology Counters,Siemens,Shimadzu Medical
+PROD-27659,X-Ray Machine,X-Ray Machine is a high-quality product.,22661.89,USD,backorder,Yellow,11.93,36x60x83cm,Battery,Microbiology Culture Systems,ACME,Hitachi Medical
+PROD-17542,MRI Scanner,MRI Scanner is a high-quality product.,15808.04,USD,out of stock,Black,2.01,47x113x175cm,110V,Endoscopy,Mindray,B.Braun Melsungen
+PROD-20794,Ventilator,Ventilator is a high-quality product.,9632.38,GBP,backorder,White,75.79,111x26x144cm,Battery,Hematology Analyzers,3M,Boston Scientific Corp
+PROD-90556,Bone Densitometer,Bone Densitometer is a high-quality product.,35761.18,GBP,backorder,Red,69.96,61x123x39cm,220V,Medical Examination Tables,B.Braun,Canon Medical Systems
+PROD-31514,Blood Analyzer,Blood Analyzer is a high-quality product.,26443.57,EUR,backorder,Yellow,97.14,156x124x142cm,120-240V,Dermatoscopes,Hitachi Healthcare,Canon Medical Systems
+PROD-48112,ECG Monitor,ECG Monitor is a high-quality product.,20707.36,USD,in stock,White,42.75,107x51x182cm,120-240V,Microbiology Culture Systems,Roche,Terumo
+PROD-57273,ECG Monitor,ECG Monitor is a high-quality product.,2390.6,GBP,backorder,Red,19.61,116x140x159cm,110V,Laboratory Analyzers,Mindray,Shimadzu Medical
+PROD-98866,Ventilator,Ventilator is a high-quality product.,22019.22,USD,discontinued,Gray,44.5,163x52x94cm,Battery,Incubators,ACME,Canon Medical Systems
+PROD-49606,Mammography Unit,Mammography Unit is a high-quality product.,26181.42,GBP,out of stock,Red,95.99,168x128x165cm,Battery,Obstetric Trusses,Abbott,Olympus Corp
+PROD-73910,Surgical Laser,Surgical Laser is a high-quality product.,21298.52,GBP,in stock,Green,61.01,124x193x97cm,110V,Healthcare Transport Vehicles,Mindray,Olympus Corp
+PROD-78410,Dialysis Machine,Dialysis Machine is a high-quality product.,19515.93,USD,discontinued,Blue,33.21,20x177x63cm,220V,Hematology Analyzers,ACME,B.Braun Melsungen
+PROD-39378,Respirator,Respirator is a high-quality product.,40695.88,EUR,discontinued,Green,19.61,187x30x186cm,Multi-Voltage,Hematology Counters,Roche,Canon Medical Systems
+PROD-59005,ECG Monitor,ECG Monitor is a high-quality product.,44252.14,EUR,backorder,Green,81.26,49x148x34cm,220V,CT,B.Braun,Canon Medical Systems
+PROD-51040,C-Arm X-Ray,C-Arm X-Ray is a high-quality product.,3205.28,GBP,discontinued,Black,24.63,61x123x39cm,120-240V,Endoscopy,Hitachi Healthcare,Shimadzu Medical
+PROD-79529,Patient Monitor,Patient Monitor is a high-quality product.,17235.03,GBP,backorder,Red,75.79,23x28x183cm,220V,Physical Therapy Equipment,ACME,Shimadzu Medical
+PROD-64871,Blood Analyzer,Blood Analyzer is a high-quality product.,41794.64,GBP,out of stock,Gray,84.27,63x160x101cm,110V,Hematology Counters,Roche,Olympus Corp

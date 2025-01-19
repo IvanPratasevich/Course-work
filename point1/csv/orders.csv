@@ -1,0 +1,21 @@
+order_number,user_email,order_date,order_status,employee_email,payment_method,delivery_method,address,city,country,shipper_name
+ORD-80996,qvsyyza@outlook.com,2012-04-16 18:10:34,delivered,hailey.hernandez@biomedix.com,PayPal,Express Delivery,9254 Olive St,Chicago,USA,BioCare Logistics
+ORD-15321,wklakxz@yahoo.com,2025-04-16 18:04:50,pending,kinsley.olson@biomedix.com,Bank Transfer,Express Delivery,1916 Maple Ridge Ave,Geneva,Switzerland,MediQuick Delivery
+ORD-59049,oabiajq@gmail.com,2012-02-26 08:19:27,canceled,ezra.crawford@biomedix.com,PayPal,In-store Pickup,424 Park Ave,Rome,Italy,TNT
+ORD-83351,uxjqpfi@mail.com,2024-02-09 11:51:11,canceled,allison.grant@biomedix.com,Cash,In-store Pickup,2676 Granite St,Osaka,Japan,FedEx
+ORD-13728,oabiajq@gmail.com,2020-03-08 04:31:44,delivered,grace.dunn@biomedix.com,Cash,Standard Shipping,6287 Pine Forest Rd,Manchester,UK,LifeLine Couriers
+ORD-16232,bjqwoji@yahoo.com,2020-11-07 07:20:25,canceled,angel.guerrero@biomedix.com,Cash,Standard Shipping,424 Park Ave,Rome,Italy,GLS
+ORD-81834,gysgmyb@outlook.com,2023-12-23 03:56:22,pending,skylar.adams@biomedix.com,Bank Transfer,Standard Shipping,9850 Forest Rd,Toronto,Canada,LifeLine Logistics
+ORD-64496,oabiajq@gmail.com,2022-06-17 19:40:08,pending,grace.dunn@biomedix.com,Bank Transfer,Express Delivery,4618 Summit Ave,Los Angeles,USA,PharmaLink Transport
+ORD-77417,vabjuxb@gmail.com,2013-01-04 01:10:54,shipped,grace.dunn@biomedix.com,PayPal,Standard Shipping,2852 Fern Ave,Tokyo,Japan,MediTrans Express
+ORD-18472,svxqmhp@yahoo.com,2023-04-24 13:56:02,delivered,luke.grant@biomedix.com,PayPal,In-store Pickup,4231 Prospect St,Manchester,UK,BioCare Logistics
+ORD-35117,lnbpewu@outlook.com,2014-09-03 07:04:53,canceled,grace.dunn@biomedix.com,Bank Transfer,In-store Pickup,2118 Daffodil Ave,Madrid,Spain,PharmaLink Transport
+ORD-28420,csrjoxi@gmail.com,2015-05-08 11:39:04,pending,skylar.adams@biomedix.com,PayPal,In-store Pickup,4231 Prospect St,Manchester,UK,BioCare Logistics
+ORD-87944,gysgmyb@outlook.com,2021-06-22 03:22:28,delivered,skylar.adams@biomedix.com,Cash,Express Delivery,9254 Olive St,Chicago,USA,BioCare Logistics
+ORD-14165,zzrxvou@mail.com,2013-07-16 14:58:41,pending,skylar.adams@biomedix.com,Credit Card,Express Delivery,9254 Olive St,Chicago,USA,BioCare Logistics
+ORD-87206,ftonyml@outlook.com,2014-04-23 18:53:33,canceled,hailey.hernandez@biomedix.com,PayPal,Express Delivery,9254 Olive St,Chicago,USA,BioCare Logistics
+ORD-93530,lnbpewu@outlook.com,2019-08-11 22:46:48,canceled,allison.grant@biomedix.com,PayPal,In-store Pickup,2118 Daffodil Ave,Madrid,Spain,PharmaLink Transport
+ORD-27263,ipdxlqz@gmail.com,2024-02-01 06:44:54,canceled,ezra.crawford@biomedix.com,Bank Transfer,Standard Shipping,2852 Fern Ave,Tokyo,Japan,MediTrans Express
+ORD-67575,ftonyml@outlook.com,2021-03-06 14:07:55,shipped,grace.dunn@biomedix.com,Cash,In-store Pickup,4233 Pine Ridge St,New York,USA,DPD
+ORD-21773,ftonyml@outlook.com,2013-02-05 19:14:09,pending,allison.grant@biomedix.com,PayPal,Standard Shipping,2676 Granite St,Osaka,Japan,BioTrans Logistics
+ORD-11037,oabiajq@gmail.com,2023-09-13 22:22:28,canceled,luke.grant@biomedix.com,Bank Transfer,Standard Shipping,5121 Maplewood St,Naples,Italy,UPS

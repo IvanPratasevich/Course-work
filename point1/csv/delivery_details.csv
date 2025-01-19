@@ -1,0 +1,21 @@
+delivery_method,address,city,country,shipper_name
+Standard Shipping,5749 Summit Ridge Ave,Milan,Italy,DHL Express
+Standard Shipping,9850 Forest Rd,Toronto,Canada,LifeLine Logistics
+In-store Pickup,7307 Cedar Park Rd,New York,USA,MediCare Transport
+Express Delivery,1916 Maple Ridge Ave,Geneva,Switzerland,MediQuick Delivery
+Express Delivery,4231 Prospect St,Manchester,UK,PharmaQuick Delivery
+Standard Shipping,2852 Fern Ave,Tokyo,Japan,MediTrans Express
+In-store Pickup,424 Park Ave,Rome,Italy,TNT
+Standard Shipping,424 Park Ave,Rome,Italy,GLS
+In-store Pickup,4231 Prospect St,Manchester,UK,BioCare Logistics
+Express Delivery,1916 Maple Ridge Ave,Geneva,Switzerland,MediCare Transport
+Standard Shipping,2676 Granite St,Osaka,Japan,BioTrans Logistics
+Standard Shipping,1313 Oak Knoll Ave,Madrid,Spain,DHL Express
+Express Delivery,9254 Olive St,Chicago,USA,BioCare Logistics
+Standard Shipping,6287 Pine Forest Rd,Manchester,UK,LifeLine Couriers
+In-store Pickup,4233 Pine Ridge St,New York,USA,DPD
+In-store Pickup,2676 Granite St,Osaka,Japan,FedEx
+In-store Pickup,2118 Daffodil Ave,Madrid,Spain,PharmaLink Transport
+Standard Shipping,2633 High St,Milan,Italy,HealthWay Couriers
+Standard Shipping,5121 Maplewood St,Naples,Italy,UPS
+Express Delivery,4618 Summit Ave,Los Angeles,USA,PharmaLink Transport
