@@ -191,6 +191,4 @@ create table
     foreign key (Date) references dim_time (Date)
   );
 
-select * from fact_sales
-
 
