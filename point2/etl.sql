@@ -1,385 +1,791 @@
-create extension if not exists dblink;
+CREATE EXTENSION IF NOT EXISTS dblink;
 
-truncate table dim_address,
-dim_customer,
-dim_website,
-dim_brand,
-dim_geography,
-dim_category,
-dim_subcategory,
-dim_product,
-dim_time,
-fact_sales,
-fact_delivery restart identity cascade;
+CREATE SCHEMA IF NOT EXISTS staging;
 
-drop table if exists staging_dim_address;
-
-create table
-  staging_dim_address (
-    address_id int,
-    city varchar(50),
-    country varchar(50)
+CREATE TABLE IF NOT EXISTS
+  staging.addresses (
+    address_id INT PRIMARY KEY,
+    address VARCHAR(150),
+    city VARCHAR(50),
+    country VARCHAR(60)
   );
 
-drop table if exists staging_dim_customer;
-
-create table
-  staging_dim_customer (
-    customer_id int,
-    name varchar(100),
-    email varchar(100),
-    address_id int,
-    start_date DATE,
-    end_date DATE,
-    is_current boolean
+CREATE TABLE IF NOT EXISTS
+  staging.employees (
+    employee_id INT PRIMARY KEY,
+    employee_email VARCHAR(100),
+    first_name VARCHAR(80),
+    last_name VARCHAR(80),
+    hire_date DATE,
+    birthdate DATE,
+    address_id INT,
+    employee_role VARCHAR(50)
   );
 
-drop table if exists staging_dim_brand;
-
-create table
-  staging_dim_brand (
-    brand_id int,
-    brand_name varchar(100),
-    brand_description varchar(255),
-    country_of_origin varchar(100),
-    established_year int
+CREATE TABLE IF NOT EXISTS
+  staging.shippers (
+    shipper_id INT PRIMARY KEY,
+    shipper_name VARCHAR(100),
+    contact_info VARCHAR(255),
+    phone VARCHAR(50),
+    status BOOLEAN,
+    website_url VARCHAR(255),
+    company_type VARCHAR(100),
+    tax_id VARCHAR(50),
+    insurance_number VARCHAR(100),
+    payment_terms VARCHAR(100),
+    rating INT,
+    max_weight_capacity INT
   );
 
-drop table if exists staging_dim_product;
-
-create table
-  staging_dim_product (
-    product_id int,
-    product_code varchar(50),
-    product_name varchar(100),
-    price decimal(10, 2),
-    subcategory_id int,
-    brand_id int,
-    start_date DATE,
-    end_date DATE,
-    is_current boolean
+CREATE TABLE IF NOT EXISTS
+  staging.categories (
+    category_id INT PRIMARY KEY,
+    category_name VARCHAR(100),
+    category_description VARCHAR(255)
   );
 
-drop table if exists staging_fact_sales;
-
-create table
-  staging_fact_sales (
-    sale_id int,
-    product_id int,
-    customer_id int,
-    date DATE,
-    quantity_sold int,
-    total_sales decimal(10, 2)
+CREATE TABLE IF NOT EXISTS
+  staging.subcategories (
+    subcategory_id INT PRIMARY KEY,
+    subcategory_name VARCHAR(100),
+    category_id INT
   );
 
-drop table if exists staging_dim_month;
-
-create table
-  staging_dim_month (
-    month_id int primary key,
-    month_number int not null,
-    month_name varchar(20) not null,
-    year int not null
+CREATE TABLE IF NOT EXISTS
+  staging.brands (
+    brand_id INT PRIMARY KEY,
+    brand_name VARCHAR(100),
+    brand_description VARCHAR(255),
+    status BOOLEAN,
+    website_url VARCHAR(255),
+    country_of_origin VARCHAR(100),
+    established_year INT,
+    logo_url VARCHAR(255)
   );
 
-drop table if exists staging_dim_shipper;
-
-create table
-  staging_dim_shipper (
-    shipper_id int primary key,
-    name varchar(100),
-    contact_id int,
-    rating int
+CREATE TABLE IF NOT EXISTS
+  staging.manufacturers (
+    manufacturer_id INT PRIMARY KEY,
+    manufacturer_name VARCHAR(100),
+    manufacturer_address_id INT,
+    contact_info VARCHAR(255)
   );
 
-drop table if exists staging_dim_shipper_contactinfo;
-
-create table
-  staging_dim_shipper_contactinfo (
-    contact_id SERIAL primary key,
-    phone_number varchar(50),
-    contact_info varchar(255)
+CREATE TABLE IF NOT EXISTS
+  staging.products (
+    product_id INT PRIMARY KEY,
+    product_code VARCHAR(50),
+    product_name VARCHAR(100),
+    product_description TEXT,
+    price NUMERIC(10, 2),
+    currency VARCHAR(10),
+    availability_status VARCHAR(50),
+    color_id INT,
+    weight_id INT,
+    dimension_id INT,
+    power_supply VARCHAR(50),
+    subcategory_id INT,
+    brand_id INT,
+    manufacturer_id INT
   );
 
-drop table if exists staging_dim_quarter;
-
-create table
-  staging_dim_quarter (
-    quarter_id int primary key,
-    quarter_number int not null,
-    quarter_name varchar(20) not null,
-    year int not null
+CREATE TABLE IF NOT EXISTS
+  staging.shop_users (
+    user_id INT PRIMARY KEY,
+    email VARCHAR(100),
+    first_name VARCHAR(80),
+    last_name VARCHAR(80),
+    username VARCHAR(50),
+    PASSWORD VARCHAR(255),
+    ROLE VARCHAR(50),
+    phone VARCHAR(50),
+    status BOOLEAN,
+    birthdate DATE,
+    is_verified BOOLEAN,
+    profile_picture_url VARCHAR(255)
   );
 
-drop table if exists staging_dim_time;
-
-create table
-  staging_dim_time (
-    Date DATE primary key,
-    year int not null,
-    quarter int not null,
-    month int not null,
-    day int not null,
-    month_id int not null,
-    quarter_id int not null
+CREATE TABLE IF NOT EXISTS
+  staging.delivery_details (
+    delivery_id INT PRIMARY KEY,
+    delivery_method VARCHAR(50),
+    ship_address_id INT,
+    shipper_id INT
   );
 
-insert into
-  staging_dim_address (address_id, city, country)
-select distinct
+CREATE TABLE IF NOT EXISTS
+  staging.orders (
+    order_id INT PRIMARY KEY,
+    order_number VARCHAR(50),
+    user_id INT,
+    order_date TIMESTAMP,
+    order_status VARCHAR(50),
+    employee_id INT,
+    payment_method VARCHAR(50),
+    delivery_id INT
+  );
+
+CREATE TABLE IF NOT EXISTS
+  staging.order_details (
+    order_detail_id INT PRIMARY KEY,
+    order_id INT,
+    product_id INT,
+    quantity INT,
+    price_each NUMERIC(10, 2)
+  );
+
+INSERT INTO
+  staging.addresses (address_id, address, city, country)
+SELECT
+  *
+FROM
+  dblink (
+    'dbname=oltp_db user=postgres password=1234',
+    'SELECT address_id, address, city, country FROM addresses'
+  ) AS t (
+    address_id INT,
+    address VARCHAR,
+    city VARCHAR,
+    country VARCHAR
+  )
+ON CONFLICT (address_id) DO NOTHING;
+
+INSERT INTO
+  staging.employees (
+    employee_id,
+    employee_email,
+    first_name,
+    last_name,
+    hire_date,
+    birthdate,
+    address_id,
+    employee_role
+  )
+SELECT
+  *
+FROM
+  dblink (
+    'dbname=oltp_db user=postgres password=1234',
+    'SELECT employee_id, employee_email, first_name, last_name, hire_date, birthdate, address_id, employee_role FROM employees'
+  ) AS t (
+    employee_id INT,
+    employee_email VARCHAR,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    hire_date DATE,
+    birthdate DATE,
+    address_id INT,
+    employee_role VARCHAR
+  )
+ON CONFLICT (employee_id) DO NOTHING;
+
+INSERT INTO
+  staging.shippers (
+    shipper_id,
+    shipper_name,
+    contact_info,
+    phone,
+    status,
+    website_url,
+    company_type,
+    tax_id,
+    insurance_number,
+    payment_terms,
+    rating,
+    max_weight_capacity
+  )
+SELECT
+  *
+FROM
+  dblink (
+    'dbname=oltp_db user=postgres password=1234',
+    'SELECT shipper_id, shipper_name, contact_info, phone, status, website_url, company_type, tax_id, insurance_number, payment_terms, rating, max_weight_capacity FROM shippers'
+  ) AS t (
+    shipper_id INT,
+    shipper_name VARCHAR,
+    contact_info VARCHAR,
+    phone VARCHAR,
+    status BOOLEAN,
+    website_url VARCHAR,
+    company_type VARCHAR,
+    tax_id VARCHAR,
+    insurance_number VARCHAR,
+    payment_terms VARCHAR,
+    rating INT,
+    max_weight_capacity INT
+  )
+ON CONFLICT (shipper_id) DO NOTHING;
+
+INSERT INTO
+  staging.categories (category_id, category_name, category_description)
+SELECT
+  *
+FROM
+  dblink (
+    'dbname=oltp_db user=postgres password=1234',
+    'SELECT category_id, category_name, category_description FROM categories'
+  ) AS t (
+    category_id INT,
+    category_name VARCHAR,
+    category_description VARCHAR
+  )
+ON CONFLICT (category_id) DO NOTHING;
+
+INSERT INTO
+  staging.subcategories (subcategory_id, subcategory_name, category_id)
+SELECT
+  *
+FROM
+  dblink (
+    'dbname=oltp_db user=postgres password=1234',
+    'SELECT subcategory_id, subcategory_name, category_id FROM subcategories'
+  ) AS t (
+    subcategory_id INT,
+    subcategory_name VARCHAR,
+    category_id INT
+  )
+ON CONFLICT (subcategory_id) DO NOTHING;
+
+INSERT INTO
+  staging.products (
+    product_id,
+    product_code,
+    product_name,
+    product_description,
+    price,
+    currency,
+    availability_status,
+    color_id,
+    weight_id,
+    dimension_id,
+    power_supply,
+    subcategory_id,
+    brand_id,
+    manufacturer_id
+  )
+SELECT
+  *
+FROM
+  dblink (
+    'dbname=oltp_db user=postgres password=1234',
+    'SELECT product_id, product_code, product_name, product_description, price, currency, availability_status, color_id, weight_id, dimension_id, power_supply, subcategory_id, brand_id, manufacturer_id FROM products'
+  ) AS t (
+    product_id INT,
+    product_code VARCHAR,
+    product_name VARCHAR,
+    product_description TEXT,
+    price NUMERIC,
+    currency VARCHAR,
+    availability_status VARCHAR,
+    color_id INT,
+    weight_id INT,
+    dimension_id INT,
+    power_supply VARCHAR,
+    subcategory_id INT,
+    brand_id INT,
+    manufacturer_id INT
+  )
+ON CONFLICT (product_id) DO NOTHING;
+
+INSERT INTO
+  staging.brands (
+    brand_id,
+    brand_name,
+    brand_description,
+    status,
+    website_url,
+    country_of_origin,
+    established_year,
+    logo_url
+  )
+SELECT
+  *
+FROM
+  dblink (
+    'dbname=oltp_db user=postgres password=1234',
+    'SELECT brand_id, brand_name, brand_description, status, website_url, country_of_origin, established_year, logo_url FROM brands'
+  ) AS t (
+    brand_id INT,
+    brand_name VARCHAR,
+    brand_description VARCHAR,
+    status BOOLEAN,
+    website_url VARCHAR,
+    country_of_origin VARCHAR,
+    established_year INT,
+    logo_url VARCHAR
+  )
+ON CONFLICT (brand_id) DO NOTHING;
+
+INSERT INTO
+  staging.manufacturers (
+    manufacturer_id,
+    manufacturer_name,
+    manufacturer_address_id,
+    contact_info
+  )
+SELECT
+  *
+FROM
+  dblink (
+    'dbname=oltp_db user=postgres password=1234',
+    'SELECT manufacturer_id, manufacturer_name, manufacturer_address_id, contact_info FROM manufacturers'
+  ) AS t (
+    manufacturer_id INT,
+    manufacturer_name VARCHAR,
+    manufacturer_address_id INT,
+    contact_info VARCHAR
+  )
+ON CONFLICT (manufacturer_id) DO NOTHING;
+
+INSERT INTO
+  staging.shop_users (
+    user_id,
+    email,
+    first_name,
+    last_name,
+    username,
+    PASSWORD,
+    ROLE,
+    phone,
+    status,
+    birthdate,
+    is_verified,
+    profile_picture_url
+  )
+SELECT
+  *
+FROM
+  dblink (
+    'dbname=oltp_db user=postgres password=1234',
+    'SELECT user_id, email, first_name, last_name, username, password, role, phone, status, birthdate, is_verified, profile_picture_url FROM shop_users'
+  ) AS t (
+    user_id INT,
+    email VARCHAR,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    username VARCHAR,
+    PASSWORD VARCHAR,
+    ROLE VARCHAR,
+    phone VARCHAR,
+    status BOOLEAN,
+    birthdate DATE,
+    is_verified BOOLEAN,
+    profile_picture_url VARCHAR
+  )
+ON CONFLICT (user_id) DO NOTHING;
+
+INSERT INTO
+  staging.delivery_details (
+    delivery_id,
+    delivery_method,
+    ship_address_id,
+    shipper_id
+  )
+SELECT
+  *
+FROM
+  dblink (
+    'dbname=oltp_db user=postgres password=1234',
+    'SELECT delivery_id, delivery_method, ship_address_id, shipper_id FROM delivery_details'
+  ) AS t (
+    delivery_id INT,
+    delivery_method VARCHAR,
+    ship_address_id INT,
+    shipper_id INT
+  )
+ON CONFLICT (delivery_id) DO NOTHING;
+
+INSERT INTO
+  staging.orders (
+    order_id,
+    order_number,
+    user_id,
+    order_date,
+    order_status,
+    employee_id,
+    payment_method,
+    delivery_id
+  )
+SELECT
+  *
+FROM
+  dblink (
+    'dbname=oltp_db user=postgres password=1234',
+    'SELECT order_id, order_number, user_id, order_date, order_status, employee_id, payment_method, delivery_id FROM orders'
+  ) AS t (
+    order_id INT,
+    order_number VARCHAR,
+    user_id INT,
+    order_date TIMESTAMP,
+    order_status VARCHAR,
+    employee_id INT,
+    payment_method VARCHAR,
+    delivery_id INT
+  )
+ON CONFLICT (order_id) DO NOTHING;
+
+INSERT INTO
+  staging.order_details (
+    order_detail_id,
+    order_id,
+    product_id,
+    quantity,
+    price_each
+  )
+SELECT
+  *
+FROM
+  dblink (
+    'dbname=oltp_db user=postgres password=1234',
+    'SELECT order_detail_id, order_id, product_id, quantity, price_each FROM order_details'
+  ) AS t (
+    order_detail_id INT,
+    order_id INT,
+    product_id INT,
+    quantity INT,
+    price_each NUMERIC
+  )
+ON CONFLICT (order_detail_id) DO NOTHING;
+
+INSERT INTO
+  dim_address (address_id, city, country)
+SELECT DISTINCT
   address_id,
   city,
   country
-from
-  dblink (
-    'dbname=oltp_db user=postgres password=1234',
-    'SELECT address_id, city, country FROM addresses'
-  ) as source (
-    address_id int,
-    city varchar(50),
-    country varchar(50)
-  );
+FROM
+  staging.addresses
+ON CONFLICT (address_id) DO NOTHING;
 
-insert into
-  staging_dim_customer (
+INSERT INTO
+  dim_brand (
+    brand_id,
+    brand_sk,
+    brand_name,
+    brand_description,
+    website_id,
+    start_date,
+    end_date,
+    is_current,
+    country_of_origin,
+    established_year
+  )
+SELECT
+  b.brand_id,
+  b.brand_id AS brand_sk,
+  b.brand_name,
+  b.brand_description,
+  NULL AS website_id,
+  CURRENT_DATE AS start_date,
+  CURRENT_DATE + INTERVAL '1 year' AS end_date,
+  TRUE AS is_current,
+  b.country_of_origin,
+  b.established_year
+FROM
+  staging.brands b
+ON CONFLICT (brand_id) DO NOTHING;
+
+INSERT INTO
+  dim_customer (
     customer_id,
-    name,
+    NAME,
     email,
     address_id,
     start_date,
     end_date,
     is_current
   )
-select distinct
-  user_id,
-  concat(first_name, ' ', last_name) as name,
-  email,
-  address_id,
-  current_date,
-  current_date + interval '30 days' + (random() * 30)::int * interval '1 day',
-  true
-from
-  dblink (
-    'dbname=oltp_db user=postgres password=1234',
-    $dblink_query$
-            SELECT
-                u.user_id,
-                u.first_name,
-                u.last_name,
-                u.email,
-                dd.ship_address_id AS address_id
-            FROM shop_users u, orders o, delivery_details dd
-            WHERE u.user_id = o.user_id
-              AND o.delivery_id = dd.delivery_id
-            $dblink_query$
-  ) as source (
-    user_id int,
-    first_name varchar(50),
-    last_name varchar(50),
-    email varchar(100),
-    address_id int
-  );
+SELECT
+  u.user_id,
+  CONCAT(u.first_name, ' ', u.last_name) AS NAME,
+  u.email,
+  a.address_id,
+  CURRENT_DATE AS start_date,
+  CURRENT_DATE + INTERVAL '1 year' AS end_date,
+  TRUE AS is_current
+FROM
+  staging.shop_users u
+  LEFT JOIN staging.addresses a ON u.user_id = a.address_id
+ON CONFLICT (customer_id) DO NOTHING;
 
-insert into
-  staging_dim_brand (
-    brand_id,
-    brand_name,
-    brand_description,
-    country_of_origin,
-    established_year
-  )
-select distinct
-  brand_id,
-  brand_name,
-  brand_description,
-  country_of_origin,
-  established_year
-from
-  dblink (
-    'dbname=oltp_db user=postgres password=1234',
-    'SELECT brand_id, brand_name, brand_description, country_of_origin, established_year FROM brands'
-  ) as source (
-    brand_id int,
-    brand_name varchar(100),
-    brand_description varchar(255),
-    country_of_origin varchar(100),
-    established_year int
-  );
+INSERT INTO
+  dim_category (category_id, category_name)
+SELECT DISTINCT
+  category_id,
+  category_name
+FROM
+  staging.categories
+ON CONFLICT (category_id) DO NOTHING;
 
-insert into
-  staging_dim_product (
+INSERT INTO
+  dim_subcategory (subcategory_id, subcategory_name, category_id)
+SELECT DISTINCT
+  subcategory_id,
+  subcategory_name,
+  category_id
+FROM
+  staging.subcategories
+ON CONFLICT (subcategory_id) DO NOTHING;
+
+INSERT INTO
+  dim_product (
     product_id,
     product_code,
-    product_name,
+    NAME,
     price,
     subcategory_id,
-    brand_id,
     start_date,
-    end_date,
+    end_ate,
     is_current
   )
-select distinct
-  product_id,
-  product_code,
-  product_name,
-  price,
-  subcategory_id,
-  brand_id,
-  current_date,
-  current_date + interval '30 days' + (random() * 30)::int * interval '1 day',
-  true
-from
-  dblink (
-    'dbname=oltp_db user=postgres password=1234',
-    'SELECT product_id, product_code, product_name, price, subcategory_id, brand_id FROM products'
-  ) as source (
-    product_id int,
-    product_code varchar(50),
-    product_name varchar(100),
-    price decimal(10, 2),
-    subcategory_id int,
-    brand_id int
-  );
+SELECT
+  p.product_id,
+  p.product_code,
+  p.product_name,
+  p.price,
+  p.subcategory_id,
+  CURRENT_DATE AS start_date,
+  CURRENT_DATE + (FLOOR(RANDOM() * 30) || ' days')::INTERVAL AS end_ate,
+  TRUE AS is_current
+FROM
+  staging.products p
+ON CONFLICT (product_code) DO
+UPDATE
+SET
+  NAME = EXCLUDED.name,
+  price = EXCLUDED.price,
+  subcategory_id = EXCLUDED.subcategory_id,
+  start_date = EXCLUDED.start_date,
+  end_ate = EXCLUDED.end_ate,
+  is_current = EXCLUDED.is_current;
 
-insert into
-  staging_fact_sales (
+INSERT INTO
+  dim_shipper (shipper_id, NAME, contact_id, rating)
+SELECT
+  s.shipper_id,
+  s.shipper_name,
+  NULL AS contact_id,
+  s.rating
+FROM
+  staging.shippers s
+ON CONFLICT (shipper_id) DO NOTHING;
+
+INSERT INTO
+  dim_month (month_id, month_number, month_name, YEAR)
+SELECT DISTINCT
+  EXTRACT(
+    YEAR
+    FROM
+      o.order_date
+  ) * 100 + EXTRACT(
+    MONTH
+    FROM
+      o.order_date
+  ) AS month_id,
+  EXTRACT(
+    MONTH
+    FROM
+      o.order_date
+  ) AS month_number,
+  TO_CHAR(o.order_date, 'Month') AS month_name,
+  EXTRACT(
+    YEAR
+    FROM
+      o.order_date
+  ) AS YEAR
+FROM
+  staging.orders o
+ON CONFLICT (month_id) DO NOTHING;
+
+INSERT INTO
+  dim_quarter (quarter_id, quarter_number, quarter_name, YEAR)
+SELECT DISTINCT
+  EXTRACT(
+    YEAR
+    FROM
+      o.order_date
+  ) * 10 + CEIL(
+    EXTRACT(
+      MONTH
+      FROM
+        o.order_date
+    ) / 3.0
+  ) AS quarter_id,
+  CEIL(
+    EXTRACT(
+      MONTH
+      FROM
+        o.order_date
+    ) / 3.0
+  ) AS quarter_number,
+  CASE
+    WHEN CEIL(
+      EXTRACT(
+        MONTH
+        FROM
+          o.order_date
+      ) / 3.0
+    ) = 1 THEN 'Q1'
+    WHEN CEIL(
+      EXTRACT(
+        MONTH
+        FROM
+          o.order_date
+      ) / 3.0
+    ) = 2 THEN 'Q2'
+    WHEN CEIL(
+      EXTRACT(
+        MONTH
+        FROM
+          o.order_date
+      ) / 3.0
+    ) = 3 THEN 'Q3'
+    ELSE 'Q4'
+  END AS quarter_name,
+  EXTRACT(
+    YEAR
+    FROM
+      o.order_date
+  ) AS YEAR
+FROM
+  staging.orders o
+ON CONFLICT (quarter_id) DO NOTHING;
+
+INSERT INTO
+  dim_time (
+    Date,
+    YEAR,
+    QUARTER,
+    MONTH,
+    DAY,
+    month_id,
+    quarter_id
+  )
+SELECT DISTINCT
+  o.order_date AS Date,
+  EXTRACT(
+    YEAR
+    FROM
+      o.order_date
+  ) AS YEAR,
+  CEIL(
+    EXTRACT(
+      MONTH
+      FROM
+        o.order_date
+    ) / 3.0
+  ) AS QUARTER,
+  EXTRACT(
+    MONTH
+    FROM
+      o.order_date
+  ) AS MONTH,
+  EXTRACT(
+    DAY
+    FROM
+      o.order_date
+  ) AS DAY,
+  EXTRACT(
+    YEAR
+    FROM
+      o.order_date
+  ) * 100 + EXTRACT(
+    MONTH
+    FROM
+      o.order_date
+  ) AS month_id,
+  EXTRACT(
+    YEAR
+    FROM
+      o.order_date
+  ) * 10 + CEIL(
+    EXTRACT(
+      MONTH
+      FROM
+        o.order_date
+    ) / 3.0
+  ) AS quarter_id
+FROM
+  staging.orders o
+ON CONFLICT (Date) DO NOTHING;
+
+INSERT INTO
+  dim_status (status_id, status_name)
+SELECT DISTINCT
+  ROW_NUMBER() OVER (
+    ORDER BY
+      order_status
+  ) AS status_id,
+  order_status AS status_name
+FROM
+  staging.orders
+WHERE
+  order_status IS NOT NULL
+ON CONFLICT (status_id) DO
+UPDATE
+SET
+  status_name = EXCLUDED.status_name;
+
+INSERT INTO
+  dim_payment_method (payment_method_id, payment_method_name)
+SELECT DISTINCT
+  ROW_NUMBER() OVER (
+    ORDER BY
+      payment_method
+  ) AS payment_method_id,
+  payment_method AS payment_method_name
+FROM
+  staging.orders
+WHERE
+  payment_method IS NOT NULL
+ON CONFLICT (payment_method_id) DO
+UPDATE
+SET
+  payment_method_name = EXCLUDED.payment_method_name;
+
+INSERT INTO
+  fact_sales (
     sale_id,
     product_id,
     customer_id,
-    date,
+    Date,
+    brand_id,
+    payment_method_id,
+    status_id,
     quantity_sold,
     total_sales
   )
-select distinct
-  order_detail_id,
-  product_id,
-  user_id,
-  order_date,
-  quantity,
-  quantity * price_each
-from
-  dblink (
-    'dbname=oltp_db user=postgres password=1234',
-    'SELECT od.order_detail_id, od.product_id, o.user_id, o.order_date, od.quantity, od.price_each FROM order_details od JOIN orders o ON od.order_id = o.order_id'
-  ) as source (
-    order_detail_id int,
-    product_id int,
-    user_id int,
-    order_date DATE,
-    quantity int,
-    price_each decimal(10, 2)
-  );
+SELECT
+  ROW_NUMBER() OVER (
+    ORDER BY
+      od.order_id,
+      od.product_id
+  ) AS sale_id,
+  od.product_id,
+  o.user_id AS customer_id,
+  o.order_date AS Date,
+  dp.brand_id,
+  pm.payment_method_id,
+  s.status_id,
+  od.quantity,
+  od.quantity * sp.price AS total_sales
+FROM
+  staging.order_details od
+  JOIN staging.orders o ON od.order_id = o.order_id
+  JOIN staging.products sp ON od.product_id = sp.product_id
+  JOIN dim_brand dp ON sp.brand_id = dp.brand_id
+  JOIN dim_payment_method pm ON TRIM(LOWER(o.payment_method)) = TRIM(LOWER(pm.payment_method_name))
+  JOIN dim_status s ON TRIM(LOWER(o.order_status)) = TRIM(LOWER(s.status_name))
+ON CONFLICT (sale_id) DO NOTHING;
 
-drop table if exists staging_dim_website;
+SELECT
+  *
+FROM
+  fact_sales;
 
-create table
-  staging_dim_website (
-    website_id int,
-    website_url varchar(255),
-    logo_url varchar(255)
-  );
-
-drop table if exists staging_dim_geography;
-
-create table
-  staging_dim_geography (
-    geography_id int,
-    country varchar(100),
-    region varchar(100),
-    city varchar(100)
-  );
-
-drop table if exists staging_dim_category;
-
-create table
-  staging_dim_category (
-    category_id int,
-    category_name varchar(100),
-    category_description varchar(255)
-  );
-
-drop table if exists staging_dim_subcategory;
-
-create table
-  staging_dim_subcategory (
-    subcategory_id int,
-    subcategory_name varchar(100),
-    category_id int,
-    subcategory_description varchar(255)
-  );
-
-drop table if exists staging_dim_status;
-
-create table
-  staging_dim_status (status_id int, status_name varchar(50));
-
-drop table if exists staging_dim_payment_method;
-
-create table
-  staging_dim_payment_method (
-    payment_method_id int,
-    payment_method_name varchar(50)
-  );
-
-drop table if exists staging_fact_delivery;
-
-create table
-  staging_fact_delivery (
-    delivery_id int,
-    shipper_id int,
-    order_id int,
-    Date DATE,
-    geography_id int,
-    delivery_time decimal(10, 2),
-    delivery_cost decimal(10, 2)
-  );
-
-truncate table staging_fact_delivery,
-staging_fact_sales,
-staging_dim_address,
-staging_dim_customer,
-staging_dim_brand,
-staging_dim_website,
-staging_dim_geography,
-staging_dim_category,
-staging_dim_subcategory,
-staging_dim_product,
-staging_dim_status,
-staging_dim_payment_method restart identity cascade;
-
-insert into
-  staging_fact_sales (
-    sale_id,
-    product_id,
-    customer_id,
-    date,
-    quantity_sold,
-    total_sales
-  )
-select distinct
-  order_detail_id,
-  product_id,
-  user_id,
-  order_date,
-  quantity,
-  quantity * price_each
-from
-  dblink (
-    'dbname=oltp_db user=postgres password=1234',
-    'SELECT od.order_detail_id, od.product_id, o.user_id, o.order_date, od.quantity, od.price_each
-             FROM order_details od
-             JOIN orders o ON od.order_id = o.order_id'
-  ) as source (
-    order_detail_id int,
-    product_id int,
-    user_id int,
-    order_date DATE,
-    quantity int,
-    price_each decimal(10, 2)
-  );
-
-insert into
-  staging_fact_delivery (
+INSERT INTO
+  fact_delivery (
     delivery_id,
     shipper_id,
     order_id,
@@ -388,589 +794,21 @@ insert into
     delivery_time,
     delivery_cost
   )
-select distinct
-  source.delivery_id,
-  source.shipper_id,
-  source.order_id,
-  source.order_date as Date,
-  geography.geography_id,
-  cast(null as numeric) as delivery_time,
-  cast(null as numeric) as delivery_cost
-from
-  (
-    select
-      delivery_id,
-      shipper_id,
-      ship_address_id,
-      order_id,
-      order_date
-    from
-      dblink (
-        'dbname=oltp_db user=postgres password=1234',
-        'SELECT delivery_details.delivery_id, delivery_details.shipper_id, delivery_details.ship_address_id, orders.order_id, orders.order_date
-                 FROM delivery_details
-                 JOIN orders ON delivery_details.delivery_id = orders.delivery_id'
-      ) as dblink_result (
-        delivery_id int,
-        shipper_id int,
-        ship_address_id int,
-        order_id int,
-        order_date DATE
-      )
-  ) as source
-  left join staging_dim_geography geography on source.ship_address_id = geography.geography_id;
+SELECT
+  dd.delivery_id,
+  ds.shipper_id,
+  o.order_id,
+  o.order_date,
+  NULL AS geography_id,
+  (FLOOR(RANDOM() * 21) + 1)::DECIMAL(10, 2) AS delivery_time,
+  100.0 + (RANDOM() * 50)::NUMERIC(10, 2) AS delivery_cost
+FROM
+  staging.orders o
+  JOIN staging.delivery_details dd ON o.delivery_id = dd.delivery_id
+  JOIN dim_shipper ds ON dd.shipper_id = ds.shipper_id
+ON CONFLICT (delivery_id) DO NOTHING;
 
-insert into
-  staging_dim_address (address_id, city, country)
-select distinct
-  address_id,
-  city,
-  country
-from
-  dblink (
-    'dbname=oltp_db user=postgres password=1234',
-    'SELECT address_id, city, country FROM addresses'
-  ) as source (
-    address_id int,
-    city varchar(50),
-    country varchar(50)
-  );
-
-insert into
-  staging_dim_customer (
-    customer_id,
-    name,
-    email,
-    address_id,
-    start_date,
-    end_date,
-    is_current
-  )
-select distinct
-  user_id,
-  concat(first_name, ' ', last_name) as name,
-  email,
-  address_id,
-  current_date,
-  current_date + interval '30 days' + (random() * 30)::int * interval '1 day',
-  true
-from
-  dblink (
-    'dbname=oltp_db user=postgres password=1234',
-    'SELECT u.user_id, u.first_name, u.last_name, u.email, dd.ship_address_id AS address_id
-             FROM shop_users u
-             JOIN orders o ON u.user_id = o.user_id
-             JOIN delivery_details dd ON o.delivery_id = dd.delivery_id'
-  ) as source (
-    user_id int,
-    first_name varchar(50),
-    last_name varchar(50),
-    email varchar(100),
-    address_id int
-  );
-
-insert into
-  staging_dim_brand (
-    brand_id,
-    brand_name,
-    brand_description,
-    country_of_origin,
-    established_year
-  )
-select distinct
-  brand_id,
-  brand_name,
-  brand_description,
-  country_of_origin,
-  established_year
-from
-  dblink (
-    'dbname=oltp_db user=postgres password=1234',
-    'SELECT brand_id, brand_name, brand_description, country_of_origin, established_year FROM brands'
-  ) as source (
-    brand_id int,
-    brand_name varchar(100),
-    brand_description varchar(255),
-    country_of_origin varchar(100),
-    established_year int
-  );
-
-insert into
-  staging_dim_website (website_id, website_url, logo_url)
-select distinct
-  brand_id as website_id,
-  website_url,
-  logo_url
-from
-  dblink (
-    'dbname=oltp_db user=postgres password=1234',
-    'SELECT brand_id, website_url, logo_url FROM brands'
-  ) as source (
-    brand_id int,
-    website_url varchar(255),
-    logo_url varchar(255)
-  );
-
-insert into
-  staging_dim_geography (geography_id, country, region, city)
-select distinct
-  address_id as geography_id,
-  country,
-  null as region,
-  city
-from
-  dblink (
-    'dbname=oltp_db user=postgres password=1234',
-    'SELECT address_id, country, city FROM addresses'
-  ) as source (
-    address_id int,
-    country varchar(100),
-    city varchar(100)
-  );
-
-insert into
-  staging_dim_category (category_id, category_name, category_description)
-select distinct
-  category_id,
-  category_name,
-  category_description
-from
-  dblink (
-    'dbname=oltp_db user=postgres password=1234',
-    'SELECT category_id, category_name, category_description FROM categories'
-  ) as source (
-    category_id int,
-    category_name varchar(100),
-    category_description varchar(255)
-  );
-
-insert into
-  staging_dim_subcategory (
-    subcategory_id,
-    subcategory_name,
-    category_id,
-    subcategory_description
-  )
-select distinct
-  subcategory_id,
-  subcategory_name,
-  category_id,
-  subcategory_description
-from
-  dblink (
-    'dbname=oltp_db user=postgres password=1234',
-    'SELECT subcategory_id, subcategory_name, category_id, subcategory_description FROM subcategories'
-  ) as source (
-    subcategory_id int,
-    subcategory_name varchar(100),
-    category_id int,
-    subcategory_description varchar(255)
-  );
-
-insert into
-  dim_product (
-    product_id,
-    product_code,
-    name,
-    price,
-    subcategory_id,
-    start_date,
-    end_ate,
-    is_current
-  )
-select
-  product_id,
-  cast(product_code as integer),
-  product_name as name,
-  price,
-  subcategory_id,
-  start_date,
-  end_date,
-  is_current
-from
-  staging_dim_product;
-
-insert into
-  staging_dim_status (status_id, status_name)
-select distinct
-  row_number() over (
-    order by
-      order_status
-  ) as status_id,
-  order_status as status_name
-from
-  dblink (
-    'dbname=oltp_db user=postgres password=1234',
-    'SELECT DISTINCT order_status FROM orders'
-  ) as source (order_status varchar(50));
-
-insert into
-  staging_dim_payment_method (payment_method_id, payment_method_name)
-select distinct
-  row_number() over (
-    order by
-      payment_method
-  ) as payment_method_id,
-  payment_method as payment_method_name
-from
-  dblink (
-    'dbname=oltp_db user=postgres password=1234',
-    'SELECT DISTINCT payment_method FROM orders WHERE payment_method IS NOT NULL'
-  ) as source (payment_method varchar(50));
-
-insert into
-  staging_dim_month (month_id, month_number, month_name, year)
-select distinct
-  extract(
-    month
-    from
-      order_date
-  ) as month_id,
-  extract(
-    month
-    from
-      order_date
-  ) as month_number,
-  to_char(order_date, 'Month') as month_name,
-  extract(
-    year
-    from
-      order_date
-  ) as year
-from
-  dblink (
-    'dbname=oltp_db user=postgres password=1234',
-    'SELECT DISTINCT order_date FROM orders'
-  ) as source (order_date DATE)
-on conflict (month_id) do nothing;
-
-insert into
-  staging_dim_quarter (quarter_id, quarter_number, quarter_name, year)
-select distinct
-  extract(
-    quarter
-    from
-      order_date
-  ) as quarter_id,
-  extract(
-    quarter
-    from
-      order_date
-  ) as quarter_number,
-  concat(
-    'Q',
-    extract(
-      quarter
-      from
-        order_date
-    )
-  ) as quarter_name,
-  extract(
-    year
-    from
-      order_date
-  ) as year
-from
-  dblink (
-    'dbname=oltp_db user=postgres password=1234',
-    'SELECT DISTINCT order_date FROM orders'
-  ) as source (order_date DATE)
-on conflict (quarter_id) do nothing;
-
-insert into
-  staging_dim_time (
-    Date,
-    year,
-    quarter,
-    month,
-    day,
-    month_id,
-    quarter_id
-  )
-select distinct
-  order_date as Date,
-  extract(
-    year
-    from
-      order_date
-  ) as year,
-  extract(
-    quarter
-    from
-      order_date
-  ) as quarter,
-  extract(
-    month
-    from
-      order_date
-  ) as month,
-  extract(
-    day
-    from
-      order_date
-  ) as day,
-  extract(
-    month
-    from
-      order_date
-  ) as month_id,
-  extract(
-    quarter
-    from
-      order_date
-  ) as quarter_id
-from
-  dblink (
-    'dbname=oltp_db user=postgres password=1234',
-    'SELECT DISTINCT order_date FROM orders'
-  ) as source (order_date DATE);
-
-insert into
-  staging_dim_shipper (shipper_id, name, contact_id, rating)
-select distinct
-  shipper_id,
-  shipper_name as name,
-  row_number() over (
-    order by
-      shipper_id
-  ) as contact_id,
-  rating
-from
-  dblink (
-    'dbname=oltp_db user=postgres password=1234',
-    'SELECT shipper_id, shipper_name, rating FROM shippers'
-  ) as source (
-    shipper_id int,
-    shipper_name varchar(100),
-    rating int
-  );
-
-insert into
-  dim_address (address_id, city, country)
-select
-  address_id,
-  city,
-  country
-from
-  staging_dim_address;
-
-insert into
-  dim_customer (
-    customer_id,
-    name,
-    email,
-    address_id,
-    start_date,
-    end_date,
-    is_current
-  )
-select
-  customer_id,
-  name,
-  email,
-  address_id,
-  start_date,
-  end_date,
-  is_current
-from
-  staging_dim_customer
-on conflict (customer_id) do nothing;
-
-insert into
-  dim_brand (
-    brand_id,
-    brand_name,
-    brand_description,
-    country_of_origin,
-    established_year
-  )
-select
-  brand_id,
-  brand_name,
-  brand_description,
-  country_of_origin,
-  established_year
-from
-  staging_dim_brand;
-
-insert into
-  dim_product (
-    product_id,
-    product_code,
-    name,
-    price,
-    subcategory_id,
-    start_date,
-    end_ate,
-    is_current
-  )
-select
-  product_id,
-  cast(product_code as integer),
-  product_name as name,
-  price,
-  subcategory_id,
-  start_date,
-  end_date,
-  is_current
-from
-  staging_dim_product
-on conflict (product_id) do nothing;
-
-insert into
-  fact_sales (
-    sale_id,
-    product_id,
-    customer_id,
-    date,
-    quantity_sold,
-    total_sales
-  )
-select
-  sale_id,
-  product_id,
-  customer_id,
-  date,
-  quantity_sold,
-  total_sales
-from
-  staging_fact_sales sfs
-where
-  exists (
-    select
-      1
-    from
-      dim_product dp
-    where
-      dp.product_id = sfs.product_id
-  );
-
-insert into
-  dim_website (website_id, website_url, logo_url)
-select
-  website_id,
-  website_url,
-  logo_url
-from
-  staging_dim_website;
-
-insert into
-  dim_geography (geography_id, country, region, city)
-select
-  geography_id,
-  country,
-  region,
-  city
-from
-  staging_dim_geography;
-
-insert into
-  dim_category (category_id, category_name)
-select
-  category_id,
-  category_name
-from
-  staging_dim_category;
-
-insert into
-  dim_subcategory (subcategory_id, subcategory_name, category_id)
-select
-  subcategory_id,
-  subcategory_name,
-  category_id
-from
-  staging_dim_subcategory;
-
-insert into
-  dim_status (status_id, status_name)
-select
-  status_id,
-  status_name
-from
-  staging_dim_status
-on conflict (status_id) do nothing;
-
-insert into
-  dim_payment_method (payment_method_id, payment_method_name)
-select
-  payment_method_id,
-  payment_method_name
-from
-  staging_dim_payment_method
-on conflict (payment_method_id) do nothing;
-
-insert into
-  dim_month (month_id, month_number, month_name, year)
-select
-  month_id,
-  month_number,
-  month_name,
-  year
-from
-  staging_dim_month
-on conflict (month_id) do nothing;
-
-insert into
-  dim_quarter (quarter_id, quarter_number, quarter_name, year)
-select
-  quarter_id,
-  quarter_number,
-  quarter_name,
-  year
-from
-  staging_dim_quarter
-on conflict (quarter_id) do nothing;
-
-insert into
-  dim_time (
-    date,
-    year,
-    quarter,
-    month,
-    day,
-    month_id,
-    quarter_id
-  )
-select
-  date,
-  year,
-  quarter,
-  month,
-  day,
-  month_id,
-  quarter_id
-from
-  staging_dim_time;
-
-insert into
-  dim_shipper_contactinfo (contact_id, phone_number, contact_info)
-select
-  contact_id,
-  phone_number,
-  contact_info
-from
-  staging_dim_shipper_contactinfo;
-
-insert into
-  dim_shipper (shipper_id, name, contact_id, rating)
-select
-  shipper_id,
-  name,
-  contact_id,
-  rating
-from
-  staging_dim_shipper sds
-where
-  exists (
-    select
-      1
-    from
-      dim_shipper_contactinfo dsci
-    where
-      dsci.contact_id = sds.contact_id
-  );
-
-select
+SELECT
   *
-from
-  staging_dim_product;
+FROM
+  fact_sales;

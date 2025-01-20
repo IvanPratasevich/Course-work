@@ -2,20 +2,20 @@
 
 drop table if exists fact_sales cascade;
 drop table if exists fact_delivery cascade;
-drop table if exists dim_customer cascade;
-drop table if exists dim_address cascade;
-drop table if exists dim_brand cascade;
+drop table if exists dim_customer cascade; --+
+drop table if exists dim_address cascade; --+
+drop table if exists dim_brand cascade; --+
 drop table if exists dim_website cascade;
 drop table if exists dim_geography cascade;
-drop table if exists dim_category cascade;
-drop table if exists dim_subcategory cascade;
-drop table if exists dim_product cascade;
+drop table if exists dim_category cascade; --+
+drop table if exists dim_subcategory cascade; --+
+drop table if exists dim_product cascade; --+
 drop table if exists dim_status cascade;
 drop table if exists dim_payment_method cascade;
-drop table if exists dim_month cascade;
-drop table if exists dim_quarter cascade;
-drop table if exists dim_time cascade;
-drop table if exists dim_shipper cascade;
+drop table if exists dim_month cascade; --+
+drop table if exists dim_quarter cascade; --+
+drop table if exists dim_time cascade; --+
+drop table if exists dim_shipper cascade; --+
 drop table if exists dim_shipper_contactinfo cascade;
 
 
@@ -161,7 +161,7 @@ create table
 create table
   fact_sales (
     sale_id int primary key,
-    product_id int unique,
+    product_id int,
     customer_id int,
     Date DATE,
     brand_id int,
