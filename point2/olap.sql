@@ -1,194 +1,123 @@
---create database olap_db;
-
-drop table if exists fact_sales cascade;
-drop table if exists fact_delivery cascade;
-drop table if exists dim_customer cascade; --+
-drop table if exists dim_address cascade; --+
-drop table if exists dim_brand cascade; --+
-drop table if exists dim_website cascade;
-drop table if exists dim_geography cascade;
-drop table if exists dim_category cascade; --+
-drop table if exists dim_subcategory cascade; --+
-drop table if exists dim_product cascade; --+
-drop table if exists dim_status cascade;
-drop table if exists dim_payment_method cascade;
-drop table if exists dim_month cascade; --+
-drop table if exists dim_quarter cascade; --+
-drop table if exists dim_time cascade; --+
-drop table if exists dim_shipper cascade; --+
-drop table if exists dim_shipper_contactinfo cascade;
-
-
 create table
-  dim_address (
-    address_id int primary key,
-    city varchar(50),
-    country varchar(50)
+  DimDate (
+    DateKey int not null primary key,
+    FullDate DATE not null,
+    day int not null,
+    month int not null,
+    MonthName varchar(20),
+    QUARTER int,
+    year int
   );
 
 create table
-  dim_customer (
-    customer_id int primary key,
-    name varchar(100),
-    email varchar(100),
-    address_id int,
-    start_date DATE,
-    end_date DATE,
-    is_current boolean,
-    foreign key (address_id) references dim_address (address_id)
+  DimEmployee (
+    EmployeeKey SERIAL primary key,
+    EmployeeID int not null,
+    EmployeeEmail varchar(100),
+    FirstName varchar(80),
+    LastName varchar(80),
+    EmployeeRole varchar(50),
+    StartDate DATE not null,
+    EndDate DATE null,
+    IsCurrent boolean not null default true
   );
 
 create table
-  dim_website (
-    website_id int primary key,
-    website_url varchar(255) default 'Not provided',
-    logo_url varchar(255)
-  );
-
-
-create table
-  dim_brand (
-    brand_id int primary key,
-    brand_sk int,
-    brand_name varchar(100),
-    brand_description varchar(255),
-    website_id int,
-    start_date DATE,
-    end_date DATE,
-    is_current boolean,
-    country_of_origin varchar(100),
-    established_year int,
-    foreign key (website_id) references dim_website (website_id)
+  DimCategory (
+    CategoryKey SERIAL primary key,
+    CategoryID int not null,
+    CategoryName varchar(100) not null,
+    CategoryDesc varchar(255)
   );
 
 create table
-  dim_geography (
-    geography_id int primary key,
-    country varchar(100),
-    region varchar(100),
-    city varchar(100)
+  DimSubCategory (
+    SubCategoryKey SERIAL primary key,
+    SubCategoryID int not null,
+    SubCategoryName varchar(100) not null,
+    SubCategoryDesc varchar(255),
+    CategoryKey int not null,
+    foreign key (CategoryKey) references DimCategory (CategoryKey)
   );
 
 create table
-  dim_category (
-    category_id int primary key,
-    category_name varchar(100)
-  );
-
-
-create table
-  dim_subcategory (
-    subcategory_id int primary key,
-    subcategory_name varchar(100),
-    category_id int,
-    foreign key (category_id) references dim_category (category_id)
-  );
-
-
-create table
-  dim_product (
-    product_id int unique,
-    product_code varchar primary key,
-    name varchar(100),
-    price decimal(10, 2),
-    subcategory_id int,
-    start_date DATE,
-    end_ate DATE,
-    is_current boolean,
-    foreign key (subcategory_id) references dim_subcategory (subcategory_id)
+  DimProduct (
+    ProductKey SERIAL primary key,
+    ProductID int not null,
+    ProductName varchar(100) not null,
+    ProductDesc text,
+    Price numeric(10, 2),
+    Currency varchar(3),
+    Availability varchar(50),
+    PowerSupply varchar(50),
+    Color varchar(50),
+    Weight numeric(10, 2),
+    Dimension varchar(100),
+    SubCategoryKey int,
+    foreign key (SubCategoryKey) references DimSubCategory (SubCategoryKey)
   );
 
 create table
-  dim_month (
-    month_id int primary key,
-    month_number int not null,
-    month_name varchar(20) not null,
-    year int not null
+  DimCustomer (
+    CustomerKey SERIAL primary key,
+    CustomerID int not null,
+    FirstName varchar(80),
+    LastName varchar(80),
+    Email varchar(100),
+    Phone varchar(50),
+    IsVerified boolean
   );
 
 create table
-  dim_quarter (
-    quarter_id int primary key,
-    quarter_number int not null,
-    quarter_name varchar(20) not null,
-    year int not null
-  );
-
-
-create table
-  dim_time (
-    Date DATE primary key,
-    year int,
-    quarter int,
-    month int,
-    day int,
-    month_id int,
-    quarter_id int,
-    foreign key (month_id) references dim_month (month_id),
-    foreign key (quarter_id) references dim_quarter (quarter_id)
-  );
-
-
-create table
-  dim_shipper_contactinfo (
-    contact_id int primary key,
-    phone_number varchar(50),
-    contact_info varchar(255)
-  );
-
-
-create table
-  dim_shipper (
-    shipper_id int primary key,
-    name varchar(100),
-    contact_id int,
-    rating int check (rating between 1 and 5),
-    foreign key (contact_id) references dim_shipper_contactinfo (contact_id)
+  DimShipperContactInfo (
+    ShipperContactInfoKey SERIAL primary key,
+    ContactInfo varchar(255),
+    Phone varchar(50),
+    WebsiteURL varchar(255)
   );
 
 create table
-  dim_payment_method (
-    payment_method_id int primary key,
-    payment_method_name varchar(50) not null
+  DimShipper (
+    ShipperKey SERIAL primary key,
+    ShipperID int not null,
+    ShipperName varchar(100),
+    Status boolean default true,
+    ShipperContactInfoKey int,
+    foreign key (ShipperContactInfoKey) references DimShipperContactInfo (ShipperContactInfoKey)
   );
 
 create table
-  dim_status (
-    status_id int primary key,
-    status_name varchar(50) not null
+  FactSales (
+    FactSalesKey SERIAL primary key,
+    DateKey int not null,
+    EmployeeKey int not null,
+    CustomerKey int not null,
+    ProductKey int not null,
+    OrderNumber varchar(50),
+    Quantity int not null,
+    PriceEach numeric(10, 2) not null,
+    ExtendedPrice numeric(10, 2) not null,
+    Currency varchar(3),
+    foreign key (DateKey) references DimDate (DateKey),
+    foreign key (EmployeeKey) references DimEmployee (EmployeeKey),
+    foreign key (CustomerKey) references DimCustomer (CustomerKey),
+    foreign key (ProductKey) references DimProduct (ProductKey)
   );
 
 create table
-  fact_sales (
-    sale_id int primary key,
-    product_id int,
-    customer_id int,
-    Date DATE,
-    brand_id int,
-    payment_method_id int,
-    status_id int,
-    quantity_sold int,
-    total_sales decimal(10, 2),
-    foreign key (product_id) references dim_product (product_id),
-    foreign key (customer_id) references dim_customer (customer_id),
-    foreign key (brand_id) references dim_brand (brand_id),
-    foreign key (Date) references dim_time (Date),
-    foreign key (payment_method_id) references dim_payment_method (payment_method_id),
-    foreign key (status_id) references dim_status (status_id)
+  FactDelivery (
+    FactDeliveryKey SERIAL primary key,
+    DateKey int not null,
+    EmployeeKey int not null,
+    CustomerKey int not null,
+    ShipperKey int not null,
+    OrderNumber varchar(50),
+    DeliveryMethod varchar(50),
+    ShippingCost numeric(10, 2),
+    Currency varchar(3),
+    DeliveryDurationDays int,
+    foreign key (DateKey) references DimDate (DateKey),
+    foreign key (EmployeeKey) references DimEmployee (EmployeeKey),
+    foreign key (CustomerKey) references DimCustomer (CustomerKey),
+    foreign key (ShipperKey) references DimShipper (ShipperKey)
   );
-
-create table
-  fact_delivery (
-    delivery_id int primary key,
-    shipper_id int,
-    order_id int,
-    Date DATE,
-    geography_id int,
-    delivery_time decimal(10, 2) NULL,
-    delivery_cost decimal(10, 2) NULL,
-    foreign key (shipper_id) references dim_shipper (shipper_id),
-    foreign key (geography_id) references dim_geography (geography_id),
-    foreign key (Date) references dim_time (Date)
-  );
-
-

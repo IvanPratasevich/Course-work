@@ -184,9 +184,3 @@ create table favorites (
     foreign key (product_id) references products (product_id) on delete cascade
 );
 
-
-ALTER TABLE product_weights
-ADD CONSTRAINT unique_weight_value UNIQUE (weight_value);
-
-ALTER TABLE product_dimensions
-ADD CONSTRAINT unique_dimension_value UNIQUE (dimension_value);
