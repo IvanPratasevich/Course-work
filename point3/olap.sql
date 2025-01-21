@@ -1,32 +1,37 @@
-SELECT DISTINCT
-    s.sale_id,
-    p.product_id,
-    s.customer_id,
-    s.Date,
-    s.brand_id,
-    s.payment_method_id,
-    s.status_id,
-    s.quantity_sold,
-    s.total_sales
-FROM
-    fact_sales s
-JOIN
-    dim_product p ON s.product_id = p.product_id
-WHERE
-    s.customer_id = 22
-ORDER BY
-    s.Date DESC;
-
-
--- Calculate in which year there were the most deliveries
+-- 1)
 
 SELECT
-    EXTRACT(YEAR FROM date) AS year,
+    fs.OrderNumber,
+    dd.FullDate AS OrderDate,
+    fs.Quantity,
+    fs.PriceEach,
+    dp.ProductName,
+    dp.ProductID,
+    dp.Price
+FROM
+    FactSales fs
+JOIN
+    DimCustomer dc ON fs.CustomerKey = dc.CustomerKey
+JOIN
+    DimDate dd ON fs.DateKey = dd.DateKey
+JOIN
+    DimProduct dp ON fs.ProductKey = dp.ProductKey
+WHERE
+    dc.CustomerID = 22
+ORDER BY
+    dd.FullDate DESC;
+
+--- 3)
+
+SELECT
+    dd.year AS delivery_year,
     COUNT(*) AS delivery_count
 FROM
-    fact_delivery
+    FactDelivery fd
+JOIN
+    DimDate dd ON fd.DateKey = dd.DateKey
 GROUP BY
-    year
+    dd.year
 ORDER BY
     delivery_count DESC
 LIMIT 1;

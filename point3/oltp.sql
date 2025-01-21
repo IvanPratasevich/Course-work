@@ -1,4 +1,4 @@
--- List of Orders with Products for a Specific User
+-- 1) List of Orders with Products for a Specific User
 
 SELECT
     o.order_id,
@@ -17,12 +17,12 @@ JOIN
 JOIN
     products p ON od.product_id = p.product_id
 WHERE
-    o.user_id = 22  -- user ID
+    o.user_id = 22
 ORDER BY
     o.order_date DESC;
 
 
---- Get the List of Favorite Products for a User
+--- 2) Get the List of Favorite Products for a User
 
 SELECT
     f.favorite_id,
@@ -36,11 +36,11 @@ FROM
 JOIN
     products p ON f.product_id = p.product_id
 WHERE
-    f.user_id = 1  -- user ID
+    f.user_id = 1
 ORDER BY
     p.price DESC;
 
--- Calculate in which year there were the most deliveries
+-- 3) Calculate in which year there were the most deliveries
 
 SELECT
     EXTRACT(YEAR FROM o.order_date) AS year,
