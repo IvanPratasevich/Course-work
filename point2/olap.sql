@@ -1,3 +1,5 @@
+-- create database olap_db;
+
 create table
   DimDate (
     DateKey int not null primary key,
