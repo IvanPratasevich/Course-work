@@ -1,3 +1,5 @@
+--- Need to wait for the script to execute
+
 set
   datestyle to 'ISO, MDY';
 
@@ -1072,7 +1074,7 @@ truncate
 -- from product_weights;
 
 select *
-from products;
+from products limit 50;
 
 -- select *
 -- from shippers;
