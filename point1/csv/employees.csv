@@ -1,11 +1,101 @@
 employee_email,first_name,last_name,hire_date,birthdate,address,city,country,employee_role
-kinsley.olson@biomedix.com,Kinsley,Olson,2025-01-19,1965-08-16,1163 Willowdale Ave,Nagoya,Japan,assistant
-luke.grant@biomedix.com,Luke,Grant,2025-01-19,1987-07-04,3351 Maple Valley Rd,Los Angeles,USA,director
-hailey.hernandez@biomedix.com,Hailey,Hernandez,2025-01-19,1991-07-29,3351 Maple Valley Rd,Los Angeles,USA,staff
-charlotte.johnson@biomedix.com,Charlotte,Johnson,2025-01-19,1999-06-25,6287 Pine Forest Rd,Manchester,UK,staff
-anthony.castillo@biomedix.com,Anthony,Castillo,2025-01-19,1989-10-13,8516 Lavender St,Munich,Germany,assistant
-skylar.adams@biomedix.com,Skylar,Adams,2025-01-19,1988-03-28,2027 Pine Grove Rd,New York,USA,manager
-allison.grant@biomedix.com,Allison,Grant,2025-01-19,1966-11-18,7307 Cedar Park Rd,New York,USA,staff
-ezra.crawford@biomedix.com,Ezra,Crawford,2025-01-19,1983-04-05,2852 Fern Ave,Tokyo,Japan,manager
-grace.dunn@biomedix.com,Grace,Dunn,2025-01-19,1974-10-30,5942 Heather Ave,Berlin,Germany,assistant
-angel.guerrero@biomedix.com,Angel,Guerrero,2025-01-19,1989-01-17,2263 Oak Park Ave,New York,USA,staff
+daniel.jordan@biomedix.com,Daniel,Jordan,2025-01-22,1973-05-18,729 Kings Ave,Rome,Italy,director
+grace.gardner@biomedix.com,Grace,Gardner,2025-01-22,1955-06-11,8653 Mint St,Paris,France,manager
+connor.hawkins@biomedix.com,Connor,Hawkins,2025-01-22,1976-10-18,1685 Cedar Springs St,New York,USA,staff
+aurora.castillo@biomedix.com,Aurora,Castillo,2025-01-22,1968-08-14,775 Heatherwood Dr,Tokyo,Japan,manager
+morgan.howard@biomedix.com,Morgan,Howard,2025-01-22,1960-01-05,2208 Pine Hill St,Rotterdam,Netherlands,staff
+liam.jimenez@biomedix.com,Liam,Jimenez,2025-01-22,1970-02-02,4226 Oak Ridge St,Rotterdam,Netherlands,assistant
+daniel.franco@biomedix.com,Daniel,Franco,2025-01-22,1958-11-22,7999 Maple Terrace Ave,Naples,Italy,staff
+colton.jimenez@biomedix.com,Colton,Jimenez,2025-01-22,1959-02-07,9723 Wisteria Ave,Naples,Italy,director
+grace.taylor@biomedix.com,Grace,Taylor,2025-01-22,1983-12-09,6196 Maplewood St,Munich,Germany,staff
+parker.wallace@biomedix.com,Parker,Wallace,2025-01-22,1987-10-17,8764 Cedar Valley Rd,Hamburg,Germany,manager
+ezra.fulton@biomedix.com,Ezra,Fulton,2025-01-22,1995-09-28,1928 Locust St,Barcelona,Spain,manager
+hannah.snyder@biomedix.com,Hannah,Snyder,2025-01-22,1988-04-19,5459 Willow Lane,Rotterdam,Netherlands,assistant
+audrey.hicks@biomedix.com,Audrey,Hicks,2025-01-22,1957-10-08,4406 Jasmine Ave,Naples,Italy,staff
+jordan.henderson@biomedix.com,Jordan,Henderson,2025-01-22,1992-09-23,9447 Meadowbrook Ave,Geneva,Switzerland,manager
+isaiah.bonilla@biomedix.com,Isaiah,Bonilla,2025-01-22,1985-12-01,9064 Elm Street,Los Angeles,USA,staff
+violet.greene@biomedix.com,Violet,Greene,2025-01-22,1994-11-07,928 Birch St,Phoenix,USA,director
+aubrey.rice@biomedix.com,Aubrey,Rice,2025-01-22,1996-06-20,4928 Pinewood Ave,Vancouver,Canada,director
+layla.patterson@biomedix.com,Layla,Patterson,2025-01-22,1994-06-20,3187 Sycamore St,Barcelona,Spain,staff
+elena.duncan@biomedix.com,Elena,Duncan,2025-01-22,1968-04-25,4379 Forest Park St,Montreal,Canada,staff
+henry.perez@biomedix.com,Henry,Perez,2025-01-22,1955-06-18,22 Valley Rd,Manchester,UK,manager
+connor.ortega@biomedix.com,Connor,Ortega,2025-01-22,1958-08-17,5200 Spruce Ridge Rd,Los Angeles,USA,staff
+aurora.warner@biomedix.com,Aurora,Warner,2025-01-22,1962-08-15,7383 Peony St,Tokyo,Japan,assistant
+grace.hoffman@biomedix.com,Grace,Hoffman,2025-01-22,1985-01-02,4091 Pine Hill Rd,Houston,USA,manager
+eva.aguilar@biomedix.com,Eva,Aguilar,2025-01-22,1965-05-13,6218 Willow Valley St,Geneva,Switzerland,director
+ryan.stephens@biomedix.com,Ryan,Stephens,2025-01-22,1971-06-03,3818 Maple Creek Ave,Zurich,Switzerland,manager
+jeremiah.rose@biomedix.com,Jeremiah,Rose,2025-01-22,1961-09-15,4710 Cypress Grove Rd,New York,USA,staff
+mateo.dominguez@biomedix.com,Mateo,Dominguez,2025-01-22,1951-08-20,2129 Broadway,Milan,Italy,director
+easton.alvarado@biomedix.com,Easton,Alvarado,2025-01-22,1989-03-19,2637 River St,Hamburg,Germany,staff
+nevaeh.tran@biomedix.com,Nevaeh,Tran,2025-01-22,1973-07-11,8511 Willowdale Rd,Tokyo,Japan,manager
+aaliyah.wright@biomedix.com,Aaliyah,Wright,2025-01-22,1968-05-28,2098 Pleasant St,Vancouver,Canada,manager
+robert.west@biomedix.com,Robert,West,2025-01-22,1988-11-13,9863 Cedar Point Rd,Berlin,Germany,staff
+luke.rios@biomedix.com,Luke,Rios,2025-01-22,1974-06-28,5492 Spruce Ave,Munich,Germany,staff
+angel.campos@biomedix.com,Angel,Campos,2025-01-22,1960-07-21,9928 Hilltop Ave,Zurich,Switzerland,staff
+parker.gordon@biomedix.com,Parker,Gordon,2025-01-22,2000-02-20,5478 Lavender St,Rome,Italy,staff
+lily.hamilton@biomedix.com,Lily,Hamilton,2025-01-22,1963-01-10,8045 Maple Bend Ave,Toronto,Canada,director
+andrew.fisher@biomedix.com,Andrew,Fisher,2025-01-22,1973-07-06,9594 Briar Rose Ave,Naples,Italy,staff
+hunter.kelley@biomedix.com,Hunter,Kelley,2025-01-22,1958-04-22,9064 Elm Street,Los Angeles,USA,manager
+thomas.alvarado@biomedix.com,Thomas,Alvarado,2025-01-22,1973-08-22,3819 Mint St,Phoenix,USA,staff
+william.ross@biomedix.com,William,Ross,2025-01-22,1966-03-28,2081 Alder St,Lyon,France,assistant
+brayden.mcdonald@biomedix.com,Brayden,Mcdonald,2025-01-22,1989-01-07,430 Ivy Ave,Milan,Italy,manager
+natalie.arnold@biomedix.com,Natalie,Arnold,2025-01-22,1983-11-17,7911 Maple Valley Rd,Munich,Germany,director
+christian.vasquez@biomedix.com,Christian,Vasquez,2025-01-22,1993-02-20,5492 Spruce Ave,Munich,Germany,assistant
+camila.willis@biomedix.com,Camila,Willis,2025-01-22,1964-04-07,5976 Oak Park Ave,Rome,Italy,director
+alex.flores@biomedix.com,Alex,Flores,2025-01-22,1952-02-03,3187 Sycamore St,Barcelona,Spain,staff
+eleanor.rice@biomedix.com,Eleanor,Rice,2025-01-22,1990-01-23,4020 Laurel St,Los Angeles,USA,director
+robert.wilson@biomedix.com,Robert,Wilson,2025-01-22,1997-05-03,2877 Willow Lane,Nagoya,Japan,director
+autumn.rios@biomedix.com,Autumn,Rios,2025-01-22,1988-11-27,4020 Laurel St,Los Angeles,USA,staff
+savannah.guerrero@biomedix.com,Savannah,Guerrero,2025-01-22,1966-11-21,68 Juniper Ridge Rd,Hamburg,Germany,assistant
+joshua.kelly@biomedix.com,Joshua,Kelly,2025-01-22,1978-03-06,998 Silverbrook Ave,Munich,Germany,manager
+colton.duncan@biomedix.com,Colton,Duncan,2025-01-22,1989-08-18,9917 Maple Ridge Ave,Chicago,USA,manager
+nora.cooley@biomedix.com,Nora,Cooley,2025-01-22,1973-03-03,8587 Pine Terrace Ave,Tokyo,Japan,staff
+nathan.guzman@biomedix.com,Nathan,Guzman,2025-01-22,1984-02-02,1115 Washington Ave,Hamburg,Germany,staff
+thomas.cohen@biomedix.com,Thomas,Cohen,2025-01-22,1962-01-23,8587 Pine Terrace Ave,Tokyo,Japan,assistant
+kennedy.wood@biomedix.com,Kennedy,Wood,2025-01-22,1961-09-04,3188 Cedar Valley Rd,Manchester,UK,director
+addison.hayes@biomedix.com,Addison,Hayes,2025-01-22,1996-10-18,3156 Cedar Park Rd,Toronto,Canada,director
+colton.bryant@biomedix.com,Colton,Bryant,2025-01-22,1950-01-14,4580 Canyon View Rd,Munich,Germany,director
+mila.turner@biomedix.com,Mila,Turner,2025-01-22,1993-05-12,6209 Sequoia St,Hamburg,Germany,assistant
+lucas.holmes@biomedix.com,Lucas,Holmes,2025-01-22,1987-01-07,68 Juniper Ridge Rd,Hamburg,Germany,staff
+elliana.ray@biomedix.com,Elliana,Ray,2025-01-22,1970-06-26,6214 Cedar Ridge Rd,Los Angeles,USA,staff
+william.hoffman@biomedix.com,William,Hoffman,2025-01-22,1956-08-19,8530 Center Ave,Rotterdam,Netherlands,manager
+matthew.reynolds@biomedix.com,Matthew,Reynolds,2025-01-22,1950-05-23,1928 Locust St,Barcelona,Spain,staff
+emily.perkins@biomedix.com,Emily,Perkins,2025-01-22,1981-02-08,1973 Edgewood Dr,Chicago,USA,staff
+anthony.ferguson@biomedix.com,Anthony,Ferguson,2025-01-22,1972-09-03,9833 Industrial Rd,Rome,Italy,staff
+laura.james@biomedix.com,Laura,James,2025-01-22,1963-01-13,164 Lavender St,Munich,Germany,staff
+adrian.lane@biomedix.com,Adrian,Lane,2025-01-22,1956-11-23,4508 Cedarwood Lane,Barcelona,Spain,staff
+isaiah.mckinney@biomedix.com,Isaiah,Mckinney,2025-01-22,1990-09-03,9369 Hawthorn St,Houston,USA,staff
+kennedy.chen@biomedix.com,Kennedy,Chen,2025-01-22,1968-02-16,7779 Oakwood Dr,Zurich,Switzerland,staff
+carter.snyder@biomedix.com,Carter,Snyder,2025-01-22,1976-08-22,9829 Peony St,Paris,France,assistant
+audrey.price@biomedix.com,Audrey,Price,2025-01-22,1980-04-17,9674 Willow Lane,Geneva,Switzerland,staff
+genesis.thomas@biomedix.com,Genesis,Thomas,2025-01-22,1964-03-23,7999 Maple Terrace Ave,Naples,Italy,director
+wyatt.robertson@biomedix.com,Wyatt,Robertson,2025-01-22,1963-12-06,8865 Willow Ridge Rd,Toronto,Canada,director
+ellie.jimenez@biomedix.com,Ellie,Jimenez,2025-01-22,1961-09-01,6191 Sunset Blvd,Hamburg,Germany,manager
+audrey.park@biomedix.com,Audrey,Park,2025-01-22,1969-10-31,3888 Cedar Glen Ave,Naples,Italy,director
+morgan.russell@biomedix.com,Morgan,Russell,2025-01-22,1979-05-06,6377 Cedar Park Rd,Rome,Italy,staff
+dominic.reilly@biomedix.com,Dominic,Reilly,2025-01-22,1951-03-11,6053 Oak Grove St,New York,USA,assistant
+colton.ford@biomedix.com,Colton,Ford,2025-01-22,1981-12-20,9609 Magnolia Ave,Chicago,USA,director
+nora.gutierrez@biomedix.com,Nora,Gutierrez,2025-01-22,1970-11-13,6230 Highland Park Ave,Barcelona,Spain,staff
+mateo.nelson@biomedix.com,Mateo,Nelson,2025-01-22,1962-12-30,3829 Rose St,Lyon,France,staff
+genesis.giles@biomedix.com,Genesis,Giles,2025-01-22,1950-08-11,5152 Clementine St,Tokyo,Japan,director
+alice.baker@biomedix.com,Alice,Baker,2025-01-22,1966-10-31,4171 Summit Ave,Los Angeles,USA,staff
+john.fisher@biomedix.com,John,Fisher,2025-01-22,1954-04-26,4544 Poppy Ave,Nagoya,Japan,director
+stella.estrada@biomedix.com,Stella,Estrada,2025-01-22,1974-02-16,9723 Wisteria Ave,Naples,Italy,director
+natalie.hunter@biomedix.com,Natalie,Hunter,2025-01-22,1984-09-12,1225 Park Ave,Chicago,USA,director
+isaiah.murphy@biomedix.com,Isaiah,Murphy,2025-01-22,1955-02-16,8738 Canyon View Rd,Manchester,UK,assistant
+reagan.rose@biomedix.com,Reagan,Rose,2025-01-22,1999-12-08,3816 Tulip St,Miami,USA,staff
+william.padilla@biomedix.com,William,Padilla,2025-01-22,1964-12-25,1463 Golden Gate St,Tokyo,Japan,staff
+ella.johnston@biomedix.com,Ella,Johnston,2025-01-22,1983-03-08,6716 Highland Park Ave,Nagoya,Japan,staff
+quinn.miles@biomedix.com,Quinn,Miles,2025-01-22,1977-03-20,2129 Broadway,Milan,Italy,staff
+ezra.robertson@biomedix.com,Ezra,Robertson,2025-01-22,2000-04-17,4163 Pine Hill Rd,Amsterdam,Netherlands,manager
+elliana.greene@biomedix.com,Elliana,Greene,2025-01-22,1977-11-16,6958 Violet Rd,Toronto,Canada,manager
+leah.phillips@biomedix.com,Leah,Phillips,2025-01-22,1989-09-28,5068 Summit Ridge Ave,Paris,France,staff
+mateo.henderson@biomedix.com,Mateo,Henderson,2025-01-22,1997-05-30,7044 Pine Grove Rd,Paris,France,director
+violet.campos@biomedix.com,Violet,Campos,2025-01-22,1984-09-10,6006 Mulberry Ave,Toronto,Canada,staff
+claire.myers@biomedix.com,Claire,Myers,2025-01-22,1972-09-30,3860 Larch Rd,Naples,Italy,assistant
+ryan.bradley@biomedix.com,Ryan,Bradley,2025-01-22,1979-12-14,2068 Poppy Ave,Toronto,Canada,director
+gabriella.gonzalez@biomedix.com,Gabriella,Gonzalez,2025-01-22,1957-11-03,9594 Briar Rose Ave,Naples,Italy,staff
+adrian.burnett@biomedix.com,Adrian,Burnett,2025-01-22,1998-03-16,8581 Granite St,Munich,Germany,staff
+sofia.ellis@biomedix.com,Sofia,Ellis,2025-01-22,1999-07-08,8010 Birch St,Paris,France,staff
+ruby.hart@biomedix.com,Ruby,Hart,2025-01-22,1958-03-02,2029 Kings Ave,Nagoya,Japan,manager
+brandon.davis@biomedix.com,Brandon,Davis,2025-01-22,1972-04-22,1100 Silver St,London,UK,manager

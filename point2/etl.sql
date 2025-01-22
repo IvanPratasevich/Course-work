@@ -1,3 +1,6 @@
+--- Need to wait for the script to execute for 15 - 60 seconds script
+
+
 create extension if not exists dblink;
 
 insert into
@@ -583,12 +586,8 @@ where
       )
   );
 
-select
-  *
-from
-  FactDELIVERY;
 
 select
   *
 from
-  FactSales;
+  FactSales limit 100;

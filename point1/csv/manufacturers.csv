@@ -1,11 +1,21 @@
 manufacturer_name,manufacturer_address_id,contact_info
-B.Braun Melsungen,7772 Maple Hill Ave,Rome,Italy,b.braunmelsungen@example.com
-Boston Scientific Corp,6780 Brookside Ave,Nagoya,Japan,bostonscientificcorp@example.com
-Terumo,3825 Cedar Meadow Rd,Phoenix,USA,terumo@example.com
-Abbott Laboratories,2027 Pine Grove Rd,New York,USA,abbottlaboratories@example.com
-Canon Medical Systems,1792 Larch Grove Ave,Houston,USA,canonmedicalsystems@example.com
-Shimadzu Medical,5942 Heather Ave,Berlin,Germany,shimadzumedical@example.com
-Johnson & Johnson Medical,8635 Chestnut Blvd,Berlin,Germany,johnson&johnsonmedical@example.com
-Olympus Corp,7362 Sycamore Grove Rd,Toronto,Canada,olympuscorp@example.com
-Hitachi Medical,5942 Heather Ave,Berlin,Germany,hitachimedical@example.com
-Philips Medical,104 Chestnut Blvd,Naples,Italy,philipsmedical@example.com
+Shimadzu Medical,6053 Oak Grove St,New York,USA,shimadzumedical@example.com
+Stryker Corp,6630 Cherry Blossom Dr,Tokyo,Japan,strykercorp@example.com
+Olympus Corp,4593 Pine Knoll Rd,Munich,Germany,olympuscorp@example.com
+Zimmer Biomet Holdings,2029 Kings Ave,Nagoya,Japan,zimmerbiometholdings@example.com
+Johnson & Johnson Medical,1862 Spruce Ridge Rd,Rotterdam,Netherlands,johnson&johnsonmedical@example.com
+GE Healthcare,2755 Cedar Springs St,Tokyo,Japan,gehealthcare@example.com
+B.Braun Melsungen,68 Juniper Ridge Rd,Hamburg,Germany,b.braunmelsungen@example.com
+Philips Medical,8587 Pine Terrace Ave,Tokyo,Japan,philipsmedical@example.com
+Fujifilm Healthcare,6617 Hillcrest Dr,Hamburg,Germany,fujifilmhealthcare@example.com
+Baxter International,8955 Riverside St,Amsterdam,Netherlands,baxterinternational@example.com
+Roche Diagnostics,4990 Riverside St,Rotterdam,Netherlands,rochediagnostics@example.com
+Mindray Bio-Medical,9654 Cedar Springs St,Rome,Italy,mindraybio-medical@example.com
+Hitachi Medical,9594 Briar Rose Ave,Naples,Italy,hitachimedical@example.com
+Boston Scientific Corp,155 Hilltop Ave,Montreal,Canada,bostonscientificcorp@example.com
+Canon Medical Systems,5992 Clover St,Milan,Italy,canonmedicalsystems@example.com
+Dräger,6630 Cherry Blossom Dr,Tokyo,Japan,dräger@example.com
+Abbott Laboratories,5328 Summit Ave,Hamburg,Germany,abbottlaboratories@example.com
+Medtronic Inc,3081 Willow Edge Ave,Osaka,Japan,medtronicinc@example.com
+Terumo,6752 Buttercup Rd,Paris,France,terumo@example.com
+Siemens Healthineers,4713 Lakeview Dr,Madrid,Spain,siemenshealthineers@example.com

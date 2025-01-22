@@ -1,11 +1,21 @@
 brand_name,brand_description,status,website_url,country_of_origin,established_year,logo_url
-Mindray,Mindray is a leading provider of medical equipment.,True,https://mindray.com,Italy,1952,https://cdn.mindray.com/logo.png
-Roche,Roche is a leading provider of medical equipment.,False,https://roche.com,Spain,2019,https://cdn.roche.com/logo.png
-Philips,Philips is a leading provider of medical equipment.,True,https://philips.com,Germany,1981,https://cdn.philips.com/logo.png
-Zimmer Biomet,Zimmer Biomet is a leading provider of medical equipment.,True,https://zimmerbiomet.com,Canada,1973,https://cdn.zimmerbiomet.com/logo.png
-B.Braun,B.Braun is a leading provider of medical equipment.,False,https://b.braun.com,Netherlands,1974,https://cdn.b.braun.com/logo.png
-Hitachi Healthcare,Hitachi Healthcare is a leading provider of medical equipment.,False,https://hitachihealthcare.com,USA,1959,https://cdn.hitachihealthcare.com/logo.png
-Siemens,Siemens is a leading provider of medical equipment.,True,https://siemens.com,USA,1998,https://cdn.siemens.com/logo.png
-ACME,ACME is a leading provider of medical equipment.,True,https://acme.com,USA,1997,https://cdn.acme.com/logo.png
-Abbott,Abbott is a leading provider of medical equipment.,True,https://abbott.com,USA,1982,https://cdn.abbott.com/logo.png
-3M,3M is a leading provider of medical equipment.,True,https://3m.com,Canada,1996,https://cdn.3m.com/logo.png
+ACME,ACME is a leading provider of medical equipment.,True,https://acme.com,USA,2004,https://cdn.acme.com/logo.png
+Roche,Roche is a leading provider of medical equipment.,False,https://roche.com,USA,1966,https://cdn.roche.com/logo.png
+Johnson & Johnson,Johnson & Johnson is a leading provider of medical equipment.,False,https://johnson&johnson.com,USA,1976,https://cdn.johnson&johnson.com/logo.png
+GE,GE is a leading provider of medical equipment.,False,https://ge.com,Italy,1991,https://cdn.ge.com/logo.png
+BD,BD is a leading provider of medical equipment.,True,https://bd.com,Germany,1968,https://cdn.bd.com/logo.png
+Medtronic,Medtronic is a leading provider of medical equipment.,True,https://medtronic.com,Japan,1996,https://cdn.medtronic.com/logo.png
+Olympus,Olympus is a leading provider of medical equipment.,True,https://olympus.com,Netherlands,1959,https://cdn.olympus.com/logo.png
+Baxter,Baxter is a leading provider of medical equipment.,True,https://baxter.com,Canada,1983,https://cdn.baxter.com/logo.png
+Hitachi Healthcare,Hitachi Healthcare is a leading provider of medical equipment.,True,https://hitachihealthcare.com,USA,1956,https://cdn.hitachihealthcare.com/logo.png
+Drager,Drager is a leading provider of medical equipment.,True,https://drager.com,Canada,2012,https://cdn.drager.com/logo.png
+Boston Scientific,Boston Scientific is a leading provider of medical equipment.,False,https://bostonscientific.com,Germany,2015,https://cdn.bostonscientific.com/logo.png
+Zimmer Biomet,Zimmer Biomet is a leading provider of medical equipment.,False,https://zimmerbiomet.com,Netherlands,2008,https://cdn.zimmerbiomet.com/logo.png
+Siemens,Siemens is a leading provider of medical equipment.,False,https://siemens.com,USA,1970,https://cdn.siemens.com/logo.png
+3M,3M is a leading provider of medical equipment.,False,https://3m.com,Canada,1994,https://cdn.3m.com/logo.png
+Mindray,Mindray is a leading provider of medical equipment.,True,https://mindray.com,Spain,1950,https://cdn.mindray.com/logo.png
+Philips,Philips is a leading provider of medical equipment.,False,https://philips.com,Spain,1969,https://cdn.philips.com/logo.png
+Abbott,Abbott is a leading provider of medical equipment.,False,https://abbott.com,Switzerland,2003,https://cdn.abbott.com/logo.png
+B.Braun,B.Braun is a leading provider of medical equipment.,False,https://b.braun.com,Canada,2006,https://cdn.b.braun.com/logo.png
+Canon Medical,Canon Medical is a leading provider of medical equipment.,True,https://canonmedical.com,France,2003,https://cdn.canonmedical.com/logo.png
+Stryker,Stryker is a leading provider of medical equipment.,True,https://stryker.com,Canada,1969,https://cdn.stryker.com/logo.png
