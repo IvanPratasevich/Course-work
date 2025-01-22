@@ -317,10 +317,11 @@ insert into
     EmployeeKey,
     CustomerKey,
     ProductKey,
+    BrandName,
     OrderNumber,
     Quantity,
     PriceEach,
-    ExtendedPrice,
+    TotalOrderAmountPrice ,
     Currency
   )
 select
@@ -367,10 +368,25 @@ select
     where
       ProductID = order_details.product_id
   ) as ProductKey,
+(
+  select
+    brand_name
+  from
+    dblink (
+      'dbname=oltp_db user=postgres password=1234',
+      'SELECT product_id, brand_id FROM products'
+    ) as p (product_id int, brand_id int)
+    join dblink (
+      'dbname=oltp_db user=postgres password=1234',
+      'SELECT brand_id, brand_name FROM brands'
+    ) as b (brand_id int, brand_name varchar) on p.brand_id = b.brand_id
+  where
+    p.product_id = order_details.product_id
+) as BrandName,
   orders.order_number,
   order_details.quantity,
   order_details.price_each,
-  (order_details.quantity * order_details.price_each) as ExtendedPrice,
+  (order_details.quantity * order_details.price_each) as TotalOrderAmountPrice ,
   (
     select
       currency
@@ -544,7 +560,7 @@ select
   round(
     (
       select
-        sum(fs.ExtendedPrice)
+        sum(fs.TotalOrderAmountPrice )
       from
         FactSales fs
       where
