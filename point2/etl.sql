@@ -274,32 +274,57 @@ where
   );
 
 insert into
-  DimCustomer (
-    CustomerID,
-    FirstName,
-    LastName,
-    Email,
-    Phone,
-    IsVerified
-  )
+  DimCustomerContactInfo (Email, Phone, IsVerified)
 select
-  user_id,
-  first_name,
-  last_name,
   email,
   phone,
   is_verified
 from
   dblink (
     'dbname=oltp_db user=postgres password=1234',
-    'SELECT user_id, first_name, last_name, email, phone, is_verified FROM shop_users'
+    'SELECT DISTINCT email, phone, is_verified FROM shop_users'
+  ) as users (email varchar, phone varchar, is_verified boolean)
+where
+  not exists (
+    select
+      1
+    from
+      DimCustomerContactInfo
+    where
+      Email = users.email
+      and Phone = users.phone
+  );
+
+insert into
+  DimCustomer (
+    CustomerID,
+    FirstName,
+    LastName,
+    CustomerContactInfoKey
+  )
+select
+  user_id,
+  first_name,
+  last_name,
+  (
+    select
+      CustomerContactInfoKey
+    from
+      DimCustomerContactInfo
+    where
+      Email = users.email
+      and Phone = users.phone
+  ) as CustomerContactInfoKey
+from
+  dblink (
+    'dbname=oltp_db user=postgres password=1234',
+    'SELECT user_id, first_name, last_name, email, phone FROM shop_users'
   ) as users (
     user_id int,
     first_name varchar,
     last_name varchar,
     email varchar,
-    phone varchar,
-    is_verified boolean
+    phone varchar
   )
 where
   not exists (

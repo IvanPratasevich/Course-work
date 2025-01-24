@@ -59,15 +59,21 @@ create table
     foreign key (SubCategoryKey) references DimSubCategory (SubCategoryKey)
   );
 
+create table DimCustomerContactInfo (
+    CustomerContactInfoKey SERIAL primary key,
+    Email varchar(100),
+    Phone varchar(50),
+    IsVerified boolean
+);
+
 create table
   DimCustomer (
     CustomerKey SERIAL primary key,
     CustomerID int not null,
     FirstName varchar(80),
     LastName varchar(80),
-    Email varchar(100),
-    Phone varchar(50),
-    IsVerified boolean
+    CustomerContactInfoKey int,
+    foreign key (CustomerContactInfoKey) references DimCustomerContactInfo  (CustomerContactInfoKey)
   );
 
 create table
