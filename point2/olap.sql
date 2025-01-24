@@ -94,6 +94,14 @@ create table
     foreign key (ShipperContactInfoKey) references DimShipperContactInfo (ShipperContactInfoKey)
   );
 
+create table DimAddresses (
+    AddressKey SERIAL PRIMARY KEY,
+    AddressID int not null,
+    Address varchar(150) not null,
+    City  varchar(50) not null,
+    Country varchar(60) not null
+);
+
 create table
   FactSales (
     FactSalesKey SERIAL primary key,
@@ -101,6 +109,7 @@ create table
     EmployeeKey int not null,
     CustomerKey int not null,
     ProductKey int not null,
+    AddressKey int,
     BrandName varchar(100),
     OrderNumber varchar(50),
     Quantity int not null,
@@ -110,7 +119,8 @@ create table
     foreign key (DateKey) references DimDate (DateKey),
     foreign key (EmployeeKey) references DimEmployee (EmployeeKey),
     foreign key (CustomerKey) references DimCustomer (CustomerKey),
-    foreign key (ProductKey) references DimProduct (ProductKey)
+    foreign key (ProductKey) references DimProduct (ProductKey),
+    foreign key (AddressKey) references  DimAddresses (AddressKey)
   );
 
 create table
@@ -120,6 +130,7 @@ create table
     EmployeeKey int not null,
     CustomerKey int not null,
     ShipperKey int not null,
+    AddressKey int,
     OrderNumber varchar(50),
     DeliveryMethod varchar(50),
     ShippingCost numeric(10, 2),
@@ -128,5 +139,6 @@ create table
     foreign key (DateKey) references DimDate (DateKey),
     foreign key (EmployeeKey) references DimEmployee (EmployeeKey),
     foreign key (CustomerKey) references DimCustomer (CustomerKey),
-    foreign key (ShipperKey) references DimShipper (ShipperKey)
+    foreign key (ShipperKey) references DimShipper (ShipperKey),
+    foreign key (AddressKey) references  DimAddresses (AddressKey)
   );

@@ -337,16 +337,44 @@ where
   );
 
 insert into
+  DimAddresses (AddressID, Address, City, Country)
+select distinct
+  address_id,
+  address,
+  city,
+  country
+from
+  dblink (
+    'dbname=oltp_db user=postgres password=1234',
+    'SELECT address_id, address, city, country FROM addresses'
+  ) as addresses (
+    address_id int,
+    address varchar,
+    city varchar,
+    country varchar
+  )
+where
+  not exists (
+    select
+      1
+    from
+      DimAddresses
+    where
+      AddressID = addresses.address_id
+  );
+
+insert into
   FactSales (
     DateKey,
     EmployeeKey,
     CustomerKey,
     ProductKey,
+    AddressKey,
     BrandName,
     OrderNumber,
     Quantity,
     PriceEach,
-    TotalOrderAmountPrice ,
+    TotalOrderAmountPrice,
     Currency
   )
 select
@@ -393,25 +421,33 @@ select
     where
       ProductID = order_details.product_id
   ) as ProductKey,
-(
-  select
-    brand_name
-  from
-    dblink (
-      'dbname=oltp_db user=postgres password=1234',
-      'SELECT product_id, brand_id FROM products'
-    ) as p (product_id int, brand_id int)
-    join dblink (
-      'dbname=oltp_db user=postgres password=1234',
-      'SELECT brand_id, brand_name FROM brands'
-    ) as b (brand_id int, brand_name varchar) on p.brand_id = b.brand_id
-  where
-    p.product_id = order_details.product_id
-) as BrandName,
+  (
+    select
+      AddressKey
+    from
+      DimAddresses
+    where
+      AddressID = delivery_details.ship_address_id
+  ) as AddressKey,
+  (
+    select
+      brand_name
+    from
+      dblink (
+        'dbname=oltp_db user=postgres password=1234',
+        'SELECT product_id, brand_id FROM products'
+      ) as p (product_id int, brand_id int)
+      join dblink (
+        'dbname=oltp_db user=postgres password=1234',
+        'SELECT brand_id, brand_name FROM brands'
+      ) as b (brand_id int, brand_name varchar) on p.brand_id = b.brand_id
+    where
+      p.product_id = order_details.product_id
+  ) as BrandName,
   orders.order_number,
   order_details.quantity,
   order_details.price_each,
-  (order_details.quantity * order_details.price_each) as TotalOrderAmountPrice ,
+  (order_details.quantity * order_details.price_each) as TotalOrderAmountPrice,
   (
     select
       currency
@@ -426,7 +462,8 @@ select
 from
   dblink (
     'dbname=oltp_db user=postgres password=1234',
-    'SELECT order_id, order_date, order_number, employee_id, user_id FROM orders'
+    'SELECT o.order_id, o.order_date, o.order_number, o.employee_id, o.user_id
+       FROM orders o'
   ) as orders (
     order_id int,
     order_date DATE,
@@ -443,6 +480,13 @@ from
     quantity int,
     price_each numeric
   ) on orders.order_id = order_details.order_id
+  join dblink (
+    'dbname=oltp_db user=postgres password=1234',
+    'SELECT delivery_id, ship_address_id FROM delivery_details'
+  ) as delivery_details (
+    delivery_id int,
+    ship_address_id int
+  ) on orders.order_id = delivery_details.delivery_id
 where
   not exists (
     select
@@ -460,6 +504,7 @@ where
           ProductID = order_details.product_id
       )
   );
+
 
 insert into
   DimShipperContactInfo (ContactInfo, Phone, WebsiteURL)
@@ -537,6 +582,7 @@ insert into
     EmployeeKey,
     CustomerKey,
     ShipperKey,
+    AddressKey,
     OrderNumber,
     DeliveryMethod,
     ShippingCost,
@@ -580,12 +626,20 @@ select
     where
       ShipperID = data.shipper_id
   ) as ShipperKey,
+  (
+    select
+      AddressKey
+    from
+      DimAddresses
+    where
+      AddressID = data.ship_address_id
+  ) as AddressKey,
   data.order_number,
   data.delivery_method,
   round(
     (
       select
-        sum(fs.TotalOrderAmountPrice )
+        sum(fs.TotalOrderAmountPrice)
       from
         FactSales fs
       where
@@ -597,7 +651,7 @@ select
 from
   dblink (
     'dbname=oltp_db user=postgres password=1234',
-    'SELECT o.order_id, o.order_number, o.order_date, o.employee_id, o.user_id, dd.shipper_id, dd.delivery_method
+    'SELECT o.order_id, o.order_number, o.order_date, o.employee_id, o.user_id, dd.shipper_id, dd.ship_address_id, dd.delivery_method
             FROM orders o
             INNER JOIN delivery_details dd ON o.delivery_id = dd.delivery_id'
   ) as data (
@@ -607,6 +661,7 @@ from
     employee_id int,
     user_id int,
     shipper_id int,
+    ship_address_id int,
     delivery_method varchar
   )
 where
@@ -626,7 +681,6 @@ where
           ShipperID = data.shipper_id
       )
   );
-
 
 select
   *
