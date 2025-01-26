@@ -93,3 +93,12 @@ group by
   b.brand_name
 order by
   total_products desc;
+
+
+select
+  email
+from
+  shop_users
+where
+  first_name = 'Carl'
+  and last_name = 'Wright';

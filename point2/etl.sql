@@ -363,148 +363,6 @@ where
       AddressID = addresses.address_id
   );
 
-insert into
-  FactSales (
-    DateKey,
-    EmployeeKey,
-    CustomerKey,
-    ProductKey,
-    AddressKey,
-    BrandName,
-    OrderNumber,
-    Quantity,
-    PriceEach,
-    TotalOrderAmountPrice,
-    Currency
-  )
-select
-  (
-    extract(
-      year
-      from
-        orders.order_date
-    ) * 10000 + extract(
-      month
-      from
-        orders.order_date
-    ) * 100 + extract(
-      day
-      from
-        orders.order_date
-    )
-  ) as DateKey,
-  (
-    select
-      EmployeeKey
-    from
-      DimEmployee
-    where
-      EmployeeID = orders.employee_id
-      and IsCurrent = true
-  ) as EmployeeKey,
-  coalesce(
-    (
-      select
-        CustomerKey
-      from
-        DimCustomer
-      where
-        CustomerID = orders.user_id
-    ),
-    -1
-  ) as CustomerKey,
-  (
-    select
-      ProductKey
-    from
-      DimProduct
-    where
-      ProductID = order_details.product_id
-  ) as ProductKey,
-  (
-    select
-      AddressKey
-    from
-      DimAddresses
-    where
-      AddressID = delivery_details.ship_address_id
-  ) as AddressKey,
-  (
-    select
-      brand_name
-    from
-      dblink (
-        'dbname=oltp_db user=postgres password=1234',
-        'SELECT product_id, brand_id FROM products'
-      ) as p (product_id int, brand_id int)
-      join dblink (
-        'dbname=oltp_db user=postgres password=1234',
-        'SELECT brand_id, brand_name FROM brands'
-      ) as b (brand_id int, brand_name varchar) on p.brand_id = b.brand_id
-    where
-      p.product_id = order_details.product_id
-  ) as BrandName,
-  orders.order_number,
-  order_details.quantity,
-  order_details.price_each,
-  (order_details.quantity * order_details.price_each) as TotalOrderAmountPrice,
-  (
-    select
-      currency
-    from
-      dblink (
-        'dbname=oltp_db user=postgres password=1234',
-        'SELECT product_id, currency FROM products'
-      ) as products (product_id int, currency varchar)
-    where
-      products.product_id = order_details.product_id
-  ) as Currency
-from
-  dblink (
-    'dbname=oltp_db user=postgres password=1234',
-    'SELECT o.order_id, o.order_date, o.order_number, o.employee_id, o.user_id
-       FROM orders o'
-  ) as orders (
-    order_id int,
-    order_date DATE,
-    order_number varchar,
-    employee_id int,
-    user_id int
-  )
-  join dblink (
-    'dbname=oltp_db user=postgres password=1234',
-    'SELECT order_id, product_id, quantity, price_each FROM order_details'
-  ) as order_details (
-    order_id int,
-    product_id int,
-    quantity int,
-    price_each numeric
-  ) on orders.order_id = order_details.order_id
-  join dblink (
-    'dbname=oltp_db user=postgres password=1234',
-    'SELECT delivery_id, ship_address_id FROM delivery_details'
-  ) as delivery_details (
-    delivery_id int,
-    ship_address_id int
-  ) on orders.order_id = delivery_details.delivery_id
-where
-  not exists (
-    select
-      1
-    from
-      FactSales
-    where
-      OrderNumber = orders.order_number
-      and ProductKey = (
-        select
-          ProductKey
-        from
-          DimProduct
-        where
-          ProductID = order_details.product_id
-      )
-  );
-
 
 insert into
   DimShipperContactInfo (ContactInfo, Phone, WebsiteURL)
@@ -679,6 +537,173 @@ where
           DimShipper
         where
           ShipperID = data.shipper_id
+      )
+  );
+
+insert into
+  FactSales (
+    DateKey,
+    EmployeeKey,
+    CustomerKey,
+    ProductKey,
+    AddressKey,
+    BrandName,
+    OrderNumber,
+    Quantity,
+    PriceEach,
+    TotalOrderAmountPrice,
+    Currency
+  )
+select
+  (
+    extract(
+      year
+      from
+        orders.order_date
+    ) * 10000 + extract(
+      month
+      from
+        orders.order_date
+    ) * 100 + extract(
+      day
+      from
+        orders.order_date
+    )
+  ) as DateKey,
+  coalesce(
+    (
+      select
+        EmployeeKey
+      from
+        DimEmployee
+      where
+        EmployeeID = orders.employee_id
+        and IsCurrent = true
+    ),
+    -1
+  ) as EmployeeKey,
+  coalesce(
+    (
+      select
+        CustomerKey
+      from
+        DimCustomer
+      where
+        CustomerID = orders.user_id
+    ),
+    -1
+  ) as CustomerKey,
+  coalesce(
+    (
+      select
+        ProductKey
+      from
+        DimProduct
+      where
+        ProductID = order_details.product_id
+    ),
+    -1
+  ) as ProductKey,
+coalesce(
+  (
+    select
+      AddressKey
+    from
+      DimAddresses
+    where
+      AddressID = delivery_details.ship_address_id
+  ),
+  (
+    select
+      AddressKey
+    from
+      FactDelivery
+    where
+      OrderNumber = orders.order_number
+  )
+) as AddressKey,
+  coalesce(
+    (
+      select
+        brand_name
+      from
+        dblink (
+          'dbname=oltp_db user=postgres password=1234',
+          'SELECT product_id, brand_id FROM products'
+        ) as p (product_id int, brand_id int)
+        join dblink (
+          'dbname=oltp_db user=postgres password=1234',
+          'SELECT brand_id, brand_name FROM brands'
+        ) as b (brand_id int, brand_name varchar) on p.brand_id = b.brand_id
+      where
+        p.product_id = order_details.product_id
+    ),
+    'Unknown'
+  ) as BrandName,
+  orders.order_number,
+  order_details.quantity,
+  order_details.price_each,
+  (order_details.quantity * order_details.price_each) as TotalOrderAmountPrice,
+  coalesce(
+    (
+      select
+        currency
+      from
+        dblink (
+          'dbname=oltp_db user=postgres password=1234',
+          'SELECT product_id, currency FROM products'
+        ) as products (product_id int, currency varchar)
+      where
+        products.product_id = order_details.product_id
+    ),
+    'USD'
+  ) as Currency
+from
+  dblink (
+    'dbname=oltp_db user=postgres password=1234',
+    'SELECT o.order_id, o.order_date, o.order_number, o.employee_id, o.user_id
+       FROM orders o'
+  ) as orders (
+    order_id int,
+    order_date DATE,
+    order_number varchar,
+    employee_id int,
+    user_id int
+  )
+  join dblink (
+    'dbname=oltp_db user=postgres password=1234',
+    'SELECT order_id, product_id, quantity, price_each FROM order_details'
+  ) as order_details (
+    order_id int,
+    product_id int,
+    quantity int,
+    price_each numeric
+  ) on orders.order_id = order_details.order_id
+  left join dblink (
+    'dbname=oltp_db user=postgres password=1234',
+    'SELECT delivery_id, ship_address_id FROM delivery_details'
+  ) as delivery_details (
+    delivery_id int,
+    ship_address_id int
+  ) on orders.order_id = delivery_details.delivery_id
+where
+  not exists (
+    select
+      1
+    from
+      FactSales
+    where
+      OrderNumber = orders.order_number
+      and ProductKey = coalesce(
+        (
+          select
+            ProductKey
+          from
+            DimProduct
+          where
+            ProductID = order_details.product_id
+        ),
+        -1
       )
   );
 

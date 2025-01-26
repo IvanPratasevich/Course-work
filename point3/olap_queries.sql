@@ -76,3 +76,14 @@ group by
   BrandName
 order by
   total_products desc;
+
+
+
+select
+  dcci.Email
+from
+  DimCustomer dc
+  join DimCustomerContactInfo dcci on dc.CustomerContactInfoKey = dcci.CustomerContactInfoKey
+where
+  dc.FirstName = 'Carl'
+  and dc.LastName = 'Wright';
